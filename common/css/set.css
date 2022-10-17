@@ -1,0 +1,21 @@
+/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
+
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* :lang(ko) {  } */
+
+*{padding: 0; margin: 0;}
+li {list-style: none; outline: none;}
+a {text-decoration: none; color: inherit; outline: none;}
+body, button, input, select, table, textarea{font-family: 'S-CoreDream-3Light', sans-serif;}
+body * {box-sizing: border-box; user-select: none;}
+img:focus {outline: none;}
+button{border: none; outline: none;}
+button:focus{outline:none;}
+input:focus{outline:none;}
+div:focus{outline:none;}
