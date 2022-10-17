@@ -1,34 +1,16 @@
-/* 
-  기본글씨체: 에스코어드림
-  타이틀 : 여기어때 잘난체, 수트
-  헤더 : 검은고딕, 인피니티산스, Sulphur Point
-*/
-
-@font-face {
-  font-family: 'SUIT-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap');
-@font-face {
-  font-family: 'InfinitySans-RegularA1';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
+@import url(./font.css);
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
 
 /* ========================================== header ========================================== */
-header{position: fixed; width: 100%; height: 80px; border-bottom: 2px solid #fff; z-index: 99; background: rgba(0, 0, 0, 0.2);}
-header .header_inner{width: 100%; height: 100%; padding: 0 30px;}
-.header_wrap{width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between; color: #fff;}
+.header{position: fixed; top: 0; width: 100%; height: 80px; border-bottom: 2px solid #fff; z-index: 99; background: rgba(100, 100, 100, 0.4); transition: top 0.4s cubic-bezier(.165,.84,.44,1);}
+.header.hide{top: -110px;}
+.header .header_inner{width: 100%; height: 100%; padding: 0 30px;}
+.header_wrap{font-family: 'Sulphur Point', sans-serif; width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between; color: #fff; text-transform: uppercase;}
+.header_wrap .logo_area{display: flex; justify-content: center; height: 80%; font-size: 18px; font-weight: bold; line-height: 1; flex-direction: column;}
+.header_wrap .logo_area span.logo_bottom{display: block; font-weight: 300;}
+.header_wrap .nav{height: 80%;}
+.header_wrap .nav ul{height: 100%; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; line-height: 1;}
+.header_wrap .nav ul li{padding: 0 12px; text-align: center; cursor: pointer;}
 
 /* ========================================== main ========================================== */
 .main{position: relative; width: 100%; min-height: 1200px; background-color: #012340; z-index: 2;}
@@ -69,7 +51,7 @@ header .header_inner{width: 100%; height: 100%; padding: 0 30px;}
 }
 
 /* 스크롤 다운 버튼 */
-.main_scroll_wrap{position: fixed; bottom: 40px; width: 100%; display: flex; justify-content: center; opacity: 1; transition: opacity .4s cubic-bezier(.215,.61,.355,1); z-index: 3;}
+.main_scroll_wrap{position: fixed; bottom: 40px; width: 100%; display: flex; justify-content: center; opacity: 1; transition: opacity .4s cubic-bezier(.215,.61,.355,1); z-index: 3; margin-top: 100px;}
 .main_scroll_wrap.scrolled{opacity: 0;}
 .main_scroll_wrap .main_scroll_indicator{}
 .main_scroll_wrap .main_scroll_indicator button{display: flex; flex-direction: row; align-items: center; background: 0 0; color: #fff;}

@@ -21,6 +21,8 @@ mainSpan.forEach(el => {
 const second_main = document.querySelector('.main .second_main_wrap');
 const main_fore_Wrap = document.querySelector('.main .first_main_wrap .main_foreground');
 const main_back_Wrap = document.querySelector('.main .first_main_wrap .main_background');
+let lastScrollTop = 0;
+let nowScrollTop;
 // second_main.style.opacity = 0;
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
@@ -54,8 +56,19 @@ window.addEventListener('scroll', () => {
   if(scrollTop > introduceTop){
     second_main.style.opacity = 1;
   }
-});
 
+  // 헤더 나타나고 사라짐
+  nowScrollTop = true;
+  if(nowScrollTop){
+    nowScrollTop = false;
+    if(scrollTop > lastScrollTop){
+      document.querySelector('.header').classList.add('hide');
+    }else {
+      document.querySelector('.header').classList.remove('hide');
+    }
+    lastScrollTop = scrollTop;
+  }
+});
 
 // 메인화면 브라우저 높이로 main 높이 설정
 function mainHeight() {
@@ -80,9 +93,9 @@ function mouseMoveEffect(e) {
   const img4 = document.querySelector(".main .main_background .back_img4");
   
   img1.style.transform = `translate(${pageX / 20}px, ${pageY / 20}px)`;
-  img2.style.transform = `translate(${pageX / 20}px, ${pageY / 20}px)`;
-  img3.style.transform = `translate(${pageX / 20}px, ${pageY / 20}px)`;
-  img4.style.transform = `translate(${pageX / 20}px, ${pageY / 20}px)`;
+  img2.style.transform = `translate(${pageX / 18}px, ${pageY / 20}px)`;
+  img3.style.transform = `translate(${pageX / 30}px, ${pageY / 20}px)`;
+  img4.style.transform = `translate(${pageX / 15}px, ${pageY / 20}px)`;
 }
 
 // 메인화면 text 바꾸기
