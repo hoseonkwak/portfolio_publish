@@ -129,16 +129,16 @@ function indexHover() {
       if(index === 0){
         // document.querySelector('.menu_wrap').style.cssText =`--backgroundColor:#d19e95;`;
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
-        menuImage.style.transform=`translate(17px, 171px)`;
+        menuImage.style.transform=`translate(17px, 237px)`;
         console.log(menuImageInner[index]);
         menuImageInner[0].classList.add('active');
       } else if(index === 1){
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#bcdace;`;
-        menuImage.style.transform=`translate(156px, 315px)`;
+        menuImage.style.transform=`translate(150px, 381px)`;
         menuImageInner[index].classList.add('active');
       } else if(index === 2){
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#b6d4e9;`;
-        menuImage.style.transform=`translate(235px, 461px)`;
+        menuImage.style.transform=`translate(220px, 523px)`;
         menuImageInner[index].classList.add('active');
       }
     }
