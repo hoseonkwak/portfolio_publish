@@ -2,13 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
 
 /* ========================================== header ========================================== */
-.header{position: fixed; top: 0; width: 100%; height: 80px; border-bottom: 2px solid #fff; z-index: 99; background: rgba(100, 100, 100, 0.4); transition: top 0.4s cubic-bezier(.165,.84,.44,1);}
+.header{position: fixed; top: 0; width: 100%; height: 80px; border-bottom: 2px solid #fff; z-index: 99; background: rgba(100, 100, 100, 0.4); transition: top 0.4s cubic-bezier(.165,.84,.44,1); backdrop-filter: blur(3px) saturate(80%);}
 .header.hide{top: -110px;}
 .header .header_inner{width: 100%; height: 100%; padding: 0 30px;}
-.header_wrap{font-family: 'Sulphur Point', sans-serif; width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between; color: #fff; text-transform: uppercase;}
-.header_wrap .logo_area{display: flex; justify-content: center; height: 80%; font-size: 18px; font-weight: bold; line-height: 1; flex-direction: column;}
+.header_wrap{width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between; color: #fff; text-transform: uppercase;}
+.header_wrap .logo_area{font-family: 'SUIT-Regular'; display: flex; justify-content: center; height: 80%; font-size: 18px; font-weight: bold; line-height: 1; flex-direction: column;}
 .header_wrap .logo_area span.logo_bottom{display: block; font-weight: 300;}
-.header_wrap .nav{height: 80%;}
+.header_wrap .nav{font-family: 'Sulphur Point', sans-serif; height: 80%;}
 .header_wrap .nav ul{height: 100%; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; line-height: 1;}
 .header_wrap .nav ul li{padding: 0 12px; text-align: center; cursor: pointer;}
 
