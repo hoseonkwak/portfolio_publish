@@ -68,7 +68,29 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = scrollTop;
   }
+
+  // about 영역
+  const indexTop = document.querySelector('.port_wrap .menu_list .menu_item .menu_item_txt').getBoundingClientRect().top;
+  indexHover(indexTop);
+  // console.log(indexTop);
+  // console.log(scrollTop);
+  if(indexTop < 0){
+    document.querySelector('.port_wrap').style.backgroundColor = '#eee1d2';
+    document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
+    document.querySelector('.heading_wrap > span').classList.add('active');
+    document.querySelector('.heading_wrap .cont_title').classList.add('active');
+  } else {
+    document.querySelector('.port_wrap').style.backgroundColor = '#f1f1f1';
+    document.querySelector('.about_wrap').style.backgroundColor = '#f1f1f1';
+    document.querySelector('.heading_wrap > span').classList.remove('active');
+    document.querySelector('.heading_wrap .cont_title').classList.remove('active');
+  }
 });
+
+// 영역 보이는지 체크
+function checkVisible(el, eval){
+ // eval = eval || ''
+}a
 
 // 메인화면 브라우저 높이로 main 높이 설정
 function mainHeight() {
@@ -118,36 +140,51 @@ function changeImg() {
 }
 
 // index hover에 따라 바꾸기
-function indexHover() {
+function indexHover(indexTop) {
   const menuItemArr = document.querySelectorAll('.port_wrap .menu_list .menu_item');
   const menuImage = document.querySelector('.port_wrap .menu_list .menu_image');
   const menuImageInner = document.querySelectorAll('.port_wrap .menu_list .menu_image .menu_image_mask img');
   
+
   menuItemArr.forEach((el, index) => {
     el.onmouseenter = () => {
-      console.log(index);
+      //console.log(index);
       if(index === 0){
         // document.querySelector('.menu_wrap').style.cssText =`--backgroundColor:#d19e95;`;
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
         menuImage.style.transform=`translate(17px, 237px)`;
-        console.log(menuImageInner[index]);
+        //console.log(menuImageInner[index]);
         menuImageInner[0].classList.add('active');
+        document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
       } else if(index === 1){
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#bcdace;`;
         menuImage.style.transform=`translate(150px, 381px)`;
         menuImageInner[index].classList.add('active');
+        document.querySelector('.about_wrap').style.backgroundColor = '#bcdace';
       } else if(index === 2){
         document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#b6d4e9;`;
         menuImage.style.transform=`translate(220px, 523px)`;
         menuImageInner[index].classList.add('active');
+        document.querySelector('.about_wrap').style.backgroundColor = '#b6d4e9';
       }
     }
-    el.onmouseleave = () => {
-      document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#f1f1f1;`;
-      menuImageInner.forEach(el => {
-        el.classList.remove('active');
-      })
+    if(indexTop < 0){
+      el.onmouseleave = () => {
+        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#f1f1f1;`;
+        menuImageInner.forEach(el => {
+          el.classList.remove('active');
+        });
+        document.querySelector('.port_wrap').style.backgroundColor = '#eee1d2';
+        document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
+      }
+    } else {
+      el.onmouseleave = () => {
+        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#f1f1f1;`;
+        menuImageInner.forEach(el => {
+          el.classList.remove('active');
+        });
+        document.querySelector('.about_wrap').style.backgroundColor = '#f1f1f1';
+      }
     }
-  })
-
+  });
 }
