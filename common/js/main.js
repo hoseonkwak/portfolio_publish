@@ -1,19 +1,21 @@
-const $win = window;
-
 /* =============== 실행 =============== */
-mainHeight();
-/* resize시 */
-onresize = (e) => {
-  mainHeight();
-};
+// onresize = (e) => {
+//   mainHeight();
+// };
 document.addEventListener("mousemove", mouseMoveEffect);  // 메인 마우스 움직일때
 changeImg();  // 메인화면 text 이미지 바꾸기
 indexHover(); // index배경 hover에 따라 바꾸기
-// document.querySelectorAll('.main .first_main_wrap .main_foreground .text_wrap h1 span').classList.add('active');
+//document.querySelectorAll('.main .first_main_wrap .main_foreground .text_wrap h1 span').classList.add('active');
 const mainSpan = document.querySelectorAll('.main .first_main_wrap .main_foreground .text_wrap h1 span');
-mainSpan.forEach(el => {
-  el.classList.add('active');
-})
+setTimeout(() => {
+  document.querySelector('.main .first_main_wrap').classList.add('active');
+  mainSpan.forEach((el, i) => {
+    el.classList.add('active');
+    el.style.cssText = `--reveal-delay: 0.${i+3}s`;
+    console.log(el);
+    //document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
+  });
+}, 500);
 
 /* ==================================== */
 
@@ -86,19 +88,6 @@ window.addEventListener('scroll', () => {
     document.querySelector('.heading_wrap .cont_title').classList.remove('active');
   }
 });
-
-// 영역 보이는지 체크
-function checkVisible(el, eval){
- // eval = eval || ''
-}a
-
-// 메인화면 브라우저 높이로 main 높이 설정
-function mainHeight() {
-  let browserHeight = $win.innerHeight * 2;
-  // console.log(browserHeight);
-  const mainHeight = document.querySelector(".main");
-  mainHeight.style.height = `${browserHeight}px`;
-}
 
 // 메인화면 마우스에 따라 움직이기
 function mouseMoveEffect(e) {
