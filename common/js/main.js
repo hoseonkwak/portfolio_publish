@@ -2,16 +2,16 @@
 // onresize = (e) => {
 //   mainHeight();
 // };
-document.addEventListener("mousemove", mouseMoveEffect);  // 메인 마우스 움직일때
-changeImg();  // 메인화면 text 이미지 바꾸기
+document.addEventListener("mousemove", mouseMoveEffect); // 메인 마우스 움직일때
+changeImg(); // 메인화면 text 이미지 바꾸기
 indexHover(); // index배경 hover에 따라 바꾸기
 //document.querySelectorAll('.main .first_main_wrap .main_foreground .text_wrap h1 span').classList.add('active');
-const mainSpan = document.querySelectorAll('.main .first_main_wrap .main_foreground .text_wrap h1 span');
+const mainSpan = document.querySelectorAll(".main .first_main_wrap .main_foreground .text_wrap h1 span");
 setTimeout(() => {
-  document.querySelector('.main .first_main_wrap').classList.add('active');
+  document.querySelector(".main .first_main_wrap").classList.add("active");
   mainSpan.forEach((el, i) => {
-    el.classList.add('active');
-    el.style.cssText = `--reveal-delay: 0.${i+3}s`;
+    el.classList.add("active");
+    el.style.cssText = `--reveal-delay: 0.${i + 3}s`;
     console.log(el);
     //document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
   });
@@ -20,79 +20,90 @@ setTimeout(() => {
 /* ==================================== */
 
 // 스크롤 이벤트
-const second_main = document.querySelector('.main .second_main_wrap');
-const main_fore_Wrap = document.querySelector('.main .first_main_wrap .main_foreground');
-const main_back_Wrap = document.querySelector('.main .first_main_wrap .main_background');
+const second_main = document.querySelector(".main .second_main_wrap");
+const main_fore_Wrap = document.querySelector(".main .first_main_wrap .main_foreground");
+const main_back_Wrap = document.querySelector(".main .first_main_wrap .main_background");
 let lastScrollTop = 0;
 let nowScrollTop;
 // second_main.style.opacity = 0;
-window.addEventListener('scroll', () => {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
-  let mainTextTop = document.querySelector('.main .first_main_wrap .main_foreground .text_wrap').offsetHeight;
-  let introduceTop = document.querySelector('.main .second_main_wrap .introduce_text_wrap').offsetHeight;
+window.addEventListener("scroll", () => {
+  let scrollTop =
+    window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
+  let mainTextTop = document.querySelector(".main .first_main_wrap .main_foreground .text_wrap").offsetHeight;
+  let introduceTop = document.querySelector(".main .second_main_wrap .introduce_text_wrap").offsetHeight;
 
-  if(scrollTop > 50){
-    document.querySelector('.main_scroll_wrap').style.opacity=0;
-  }else{
-    document.querySelector('.main_scroll_wrap').style.opacity=1;
+  if (scrollTop > 50) {
+    document.querySelector(".main_scroll_wrap").style.opacity = 0;
+  } else {
+    document.querySelector(".main_scroll_wrap").style.opacity = 1;
   }
 
   //console.log(scrollTop);
   // console.log(mainTextTop);
   // console.log(introduceTop);
-  let percentage = ((scrollTop - (mainTextTop-200))/(introduceTop - mainTextTop));
-  if(scrollTop === 0){
+  let percentage =
+    (scrollTop - (mainTextTop - 200)) / (introduceTop - mainTextTop);
+  if (scrollTop === 0) {
     second_main.style.opacity = 0;
     main_fore_Wrap.style.opacity = 1;
     main_back_Wrap.style.opacity = 1;
   }
-  if(scrollTop > mainTextTop-200 && scrollTop < introduceTop+200){
+  if (scrollTop > mainTextTop - 200 && scrollTop < introduceTop + 200) {
     second_main.style.opacity = percentage;
-    main_fore_Wrap.style.opacity = 1-percentage;
-    main_back_Wrap.style.opacity = 1-percentage;
-    main_fore_Wrap.style.transform = `translateY(${percentage*(-40)}%)`;
-    main_back_Wrap.style.transform = `translateY(${percentage*(-40)}%)`;
+    main_fore_Wrap.style.opacity = 1 - percentage;
+    main_back_Wrap.style.opacity = 1 - percentage;
+    main_fore_Wrap.style.transform = `translateY(${percentage * -40}%)`;
+    main_back_Wrap.style.transform = `translateY(${percentage * -40}%)`;
     // console.log(percentage*(-40));
     //console.log(1-percentage);
   }
-  if(scrollTop > introduceTop){
+  if (scrollTop > introduceTop) {
     second_main.style.opacity = 1;
   }
 
   // 헤더 나타나고 사라짐
   nowScrollTop = true;
-  if(nowScrollTop){
+  if (nowScrollTop) {
     nowScrollTop = false;
-    if(scrollTop > lastScrollTop){
-      document.querySelector('.header').classList.add('hide');
-    }else {
-      document.querySelector('.header').classList.remove('hide');
+    if (scrollTop > lastScrollTop) {
+      document.querySelector(".header").classList.add("hide");
+    } else {
+      document.querySelector(".header").classList.remove("hide");
     }
     lastScrollTop = scrollTop;
   }
 
   // about 영역
-  const indexTop = document.querySelector('.port_wrap .menu_list .menu_item .menu_item_txt').getBoundingClientRect().top;
+  const indexTop = document.querySelector(".port_wrap .menu_list .menu_item .menu_item_txt").getBoundingClientRect().top;
   indexHover(indexTop);
   // console.log(indexTop);
   // console.log(scrollTop);
-  if(indexTop < 0){
-    document.querySelector('.port_wrap').style.backgroundColor = '#eee1d2';
-    document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
-    document.querySelector('.heading_wrap > span').classList.add('active');
-    document.querySelector('.heading_wrap .cont_title').classList.add('active');
+  if (indexTop < 0) {
+    document.querySelector(".port_wrap").style.backgroundColor = "#b6d4e9";
+    document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
+    document.querySelector(".about_wrap .heading_wrap > span").classList.add("active");
+    document.querySelector(".about_wrap .heading_wrap .cont_title").classList.add("active");
   } else {
-    document.querySelector('.port_wrap').style.backgroundColor = '#f1f1f1';
-    document.querySelector('.about_wrap').style.backgroundColor = '#f1f1f1';
-    document.querySelector('.heading_wrap > span').classList.remove('active');
-    document.querySelector('.heading_wrap .cont_title').classList.remove('active');
+    document.querySelector(".port_wrap").style.backgroundColor = "#f1f1f1";
+    document.querySelector(".about_wrap").style.backgroundColor = "#f1f1f1";
+    document.querySelector(".about_wrap .heading_wrap > span").classList.remove("active");
+    document.querySelector(".about_wrap .heading_wrap .cont_title").classList.remove("active");
+  }
+
+  // work 영역
+  const aboutImgTop = document.querySelector(".about_wrap .heading_wrap .cont_img_wrap .image_mask").getBoundingClientRect().top;
+  //console.log(aboutImgTop);
+  if((aboutImgTop + 200) < 0){
+    console.log('여기');
+    document.querySelector(".word_wrap .heading_wrap > span").classList.add("active");
+    document.querySelector(".word_wrap .heading_wrap .cont_title").classList.add("active");
   }
 });
 
 // 메인화면 마우스에 따라 움직이기
 function mouseMoveEffect(e) {
   let pageX = 0,
-  pageY = 0;
+    pageY = 0;
 
   // 마우스 값
   pageX = e.pageX;
@@ -102,7 +113,7 @@ function mouseMoveEffect(e) {
   const img2 = document.querySelector(".main .main_background .back_img2");
   const img3 = document.querySelector(".main .main_background .back_img3");
   const img4 = document.querySelector(".main .main_background .back_img4");
-  
+
   img1.style.transform = `translate(${pageX / 20}px, ${pageY / 20}px)`;
   img2.style.transform = `translate(${pageX / 18}px, ${pageY / 20}px)`;
   img3.style.transform = `translate(${pageX / 30}px, ${pageY / 20}px)`;
@@ -111,69 +122,67 @@ function mouseMoveEffect(e) {
 
 // 메인화면 text 바꾸기
 function changeImg() {
-  const imgArr = document.querySelectorAll('.main .main_foreground .text_wrap h1 span img');
+  const imgArr = document.querySelectorAll(".main .main_foreground .text_wrap h1 span img");
   let imgIndex = 0;
 
-  setInterval(function(){
-    imgArr.forEach((el,i) => {
-      el.classList.remove('active');
-    })
+  setInterval(function () {
+    imgArr.forEach((el, i) => {
+      el.classList.remove("active");
+    });
     // console.log(imgArr[imgIndex++]);
     imgArr[imgIndex++];
-    if(imgIndex === imgArr.length){
+    if (imgIndex === imgArr.length) {
       imgIndex = 0;
     }
-    imgArr[imgIndex].classList.add('active');
+    imgArr[imgIndex].classList.add("active");
   }, 800);
   // console.log(imgArr);
 }
 
 // index hover에 따라 바꾸기
 function indexHover(indexTop) {
-  const menuItemArr = document.querySelectorAll('.port_wrap .menu_list .menu_item');
-  const menuImage = document.querySelector('.port_wrap .menu_list .menu_image');
-  const menuImageInner = document.querySelectorAll('.port_wrap .menu_list .menu_image .menu_image_mask img');
-  
+  const menuItemArr = document.querySelectorAll(".port_wrap .menu_list .menu_item");
+  const menuImage = document.querySelector(".port_wrap .menu_list .menu_image");
+  const menuImageInner = document.querySelectorAll(".port_wrap .menu_list .menu_image .menu_image_mask img");
 
   menuItemArr.forEach((el, index) => {
     el.onmouseenter = () => {
       //console.log(index);
-      if(index === 0){
-        // document.querySelector('.menu_wrap').style.cssText =`--backgroundColor:#d19e95;`;
-        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
-        menuImage.style.transform=`translate(17px, 237px)`;
+      if (index === 0) {
+        document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#b6d4e9;`;
+        menuImage.style.transform = `translate(17px, 237px)`;
         //console.log(menuImageInner[index]);
-        menuImageInner[0].classList.add('active');
-        document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
-      } else if(index === 1){
-        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#bcdace;`;
-        menuImage.style.transform=`translate(150px, 381px)`;
-        menuImageInner[index].classList.add('active');
-        document.querySelector('.about_wrap').style.backgroundColor = '#bcdace';
-      } else if(index === 2){
-        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#b6d4e9;`;
-        menuImage.style.transform=`translate(220px, 523px)`;
-        menuImageInner[index].classList.add('active');
-        document.querySelector('.about_wrap').style.backgroundColor = '#b6d4e9';
+        menuImageInner[0].classList.add("active");
+        document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
+      } else if (index === 1) {
+        document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#bcdace;`;
+        menuImage.style.transform = `translate(150px, 381px)`;
+        menuImageInner[index].classList.add("active");
+        document.querySelector(".about_wrap").style.backgroundColor = "#bcdace";
+      } else if (index === 2) {
+        document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#eee1d2;`;
+        menuImage.style.transform = `translate(220px, 523px)`;
+        menuImageInner[index].classList.add("active");
+        document.querySelector(".about_wrap").style.backgroundColor = "#eee1d2";
       }
-    }
-    if(indexTop < 0){
+    };
+    if (indexTop < 0) {
       el.onmouseleave = () => {
-        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#f1f1f1;`;
-        menuImageInner.forEach(el => {
-          el.classList.remove('active');
+        document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#f1f1f1;`;
+        menuImageInner.forEach((el) => {
+          el.classList.remove("active");
         });
-        document.querySelector('.port_wrap').style.backgroundColor = '#eee1d2';
-        document.querySelector('.about_wrap').style.backgroundColor = '#eee1d2';
-      }
+        document.querySelector(".port_wrap").style.backgroundColor = "#b6d4e9";
+        document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
+      };
     } else {
       el.onmouseleave = () => {
-        document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#f1f1f1;`;
-        menuImageInner.forEach(el => {
-          el.classList.remove('active');
+        document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#f1f1f1;`;
+        menuImageInner.forEach((el) => {
+          el.classList.remove("active");
         });
-        document.querySelector('.about_wrap').style.backgroundColor = '#f1f1f1';
-      }
+        document.querySelector(".about_wrap").style.backgroundColor = "#f1f1f1";
+      };
     }
   });
 }
