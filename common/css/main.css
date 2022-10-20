@@ -135,7 +135,7 @@
 .heading_wrap .cont_img_wrap .image_mask{width: 600px; height: 700px;}
 .heading_wrap .cont_img_wrap .image_mask .image_skew{width: 100%; height: 100%; overflow: hidden; background: url(../img/background_img4.jpg) no-repeat center; background-size: cover; animation: flippingShapes 10s linear infinite;}
 .heading_wrap .cont_img_wrap .image_mask .image_skew img{width: 100%; height: 100%; object-fit: cover;}
-.about_wrap .cont_text{display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; margin-top: -100px;}
+.about_wrap .cont_text{display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; margin-top: -100px; word-break: keep-all;}
 .about_wrap .cont_text .introduce_area{flex: 0 48%; line-height: 1.5; font-weight: 600;}
 
 /* work 영역 */
