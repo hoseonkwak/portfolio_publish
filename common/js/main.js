@@ -21,6 +21,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }, 500);
 });
 
+popup(); //popup
+
 /* ==================================== */
 
 // 스크롤 이벤트
@@ -197,6 +199,36 @@ function workSlide() {
       spacing: -0.5,
       loop: false,
       buttons: true,
+      scrollwheel: false,
     });
+  });
+}
+
+//popup
+function popup() {
+  const slideLi = document.querySelectorAll(".flipster_cont ul li");
+  const popupDivs = document.querySelectorAll(".popup");
+
+  slideLi.forEach((el, i) => {
+    slideLi[i].onclick = (e) => {
+      e.preventDefault();
+      slideLi.forEach((el, i) => {
+        //console.log(popupDivs[i]);
+        slideLi[i].classList.remove("on");
+        popupDivs[i].classList.remove("on");
+      });
+      slideLi[i].classList.add("on");
+      popupDivs[i].classList.add("on");
+    };
+  });
+
+  // closebtn 클릭
+  const closeBtn = document.querySelectorAll(".popup .popup_header .close_btn");
+  closeBtn.forEach((el, i) => {
+    closeBtn[i].onclick = () => {
+      closeBtn.forEach((el, i) => {
+        popupDivs[i].classList.remove("on");
+      });
+    };
   });
 }

@@ -142,9 +142,27 @@
 .work_wrap{padding: 140px 0; background-color: #bcdace; transition: background-color 300ms cubic-bezier(.645,.045,.355,1); overflow: hidden;}
 .work_slide_wrap{margin-top: 200px; max-width: 1000px; margin: 120px auto 0; overflow: hidden; display: block;}
 .flipster_cont {width: 100%; height: 340px; overflow: hidden;}
-.flipster_cont ul li {height: 100%;}
-.flipster_cont ul li img {height: 340px; width: auto; object-fit: cover;}
+.flipster_cont ul li {position: relative; height: 100%; cursor: pointer;}
+.flipster_cont ul li img {height: 340px; width: auto; object-fit: cover; image-rendering: -webkit-optimize-contrast;}
+.flipster_cont ul li .hover_box{position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.56); transition: all 0.4s; opacity: 0; color: #fff;}
+.flipster_cont ul li .hover_box:hover{opacity: 1;}
+.flipster_cont ul li .hover_box .hover_text{position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+.flipster_cont ul li .hover_box .hover_text p{text-transform: uppercase; font-weight: bold;}
 
+
+/* popup */
+.popup{position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: auto; background: #fff; z-index: 999; overflow-x: hidden; overflow-y: auto; transition: opacity 0.15s linear; display: none;}
+.popup.on{display: block;}
+.popup .popup_header{display: block; padding: 20px; text-align: right;}
+.popup .popup_header .close_btn{background: none; width: 36px; height: 36px; cursor: pointer;}
+.popup .popup_cont{width: 60%; margin: 0 auto;}
+.popup .popup_cont h1{margin-bottom: 40px;}
+.popup .popup_cont h3{font-size: 24px; margin-bottom: 20px;}
+.popup .popup_cont .cont{margin: 40px 0;}
+.popup .popup_cont .cont h4{color: #1f6f30; font-weight: bold; font-size: 20px; margin-bottom: 10px; text-transform: uppercase;}
+.popup .popup_cont .cont em{font-style: normal; font-size: 15px;}
+.popup .popup_cont .cont.link a:hover{text-decoration: underline;}
+.popup .popup_cont .cont img{width: 100%;}
 
 
 /* .work_slide_wrap{width: 100%;}
