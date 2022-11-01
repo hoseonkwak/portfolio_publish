@@ -96,11 +96,18 @@ window.addEventListener("scroll", () => {
 
   // work 영역
   const aboutImgTop = document.querySelector(".about_wrap .heading_wrap .cont_img_wrap .image_mask").getBoundingClientRect().top;
-  //console.log(aboutImgTop);
+  // console.log(aboutImgTop);
   if (aboutImgTop + 200 < 0) {
     //console.log("여기");
     document.querySelector(".work_wrap .heading_wrap > span").classList.add("active");
     document.querySelector(".work_wrap .heading_wrap .cont_title").classList.add("active");
+  }
+
+  // console.log(scrollTop);
+  const workTitleTop = document.querySelector(".work_wrap .heading_wrap .cont_title span:last-child").getBoundingClientRect().top;
+  if (workTitleTop + 100 < 0) {
+    document.querySelector(".example_wrap .title_wrap div.move1").classList.add("active");
+    document.querySelector(".example_wrap .title_wrap div.move2").classList.add("active");
   }
 });
 
