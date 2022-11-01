@@ -146,7 +146,7 @@
   <!-- about 영역 -->
   <div class="about_wrap">
     <div class="heading_wrap">
-      <span>01/04</span>
+      <span>01/03</span>
       <h2 class="cont_title">
         <span>This is</span>
         <span>about me</span>
@@ -175,7 +175,7 @@
   <!-- work 영역 -->
   <div class="work_wrap">
     <div class="heading_wrap">
-      <span>02/04</span>
+      <span>02/03</span>
       <h2 class="cont_title">
         <span>This is</span>
         <span>work</span>
@@ -195,20 +195,20 @@
             </div>
           </li>
           <li class="swiper-slide">
-            <img src="./common/img/work1.jpg" alt="은행 캡쳐진행">
-            <div class="hover_box">
-              <div class="hover_text">
-                <p>detail page</p>
-                bank mobile page
-              </div>
-            </div>
-          </li>
-          <li class="swiper-slide">
             <img src="./common/img/work4.jpg" alt="키워드림론">
             <div class="hover_box">
               <div class="hover_text">
                 <p>detail page</p>
                 키워드림론 page
+              </div>
+            </div>
+          </li>
+          <li class="swiper-slide">
+            <img src="./common/img/work6.jpg" alt="은행 캡쳐진행">
+            <div class="hover_box">
+              <div class="hover_text">
+                <p>detail page</p>
+                bank mobile page
               </div>
             </div>
           </li>
@@ -235,7 +235,7 @@
             <div class="hover_box">
               <div class="hover_text">
                 <p>detail page</p>
-                뉴욕타임즈 뉴스 검색 page
+                뉴욕타임즈 뉴스 검색 page - 리액트
               </div>
             </div>
           </li>
@@ -243,6 +243,12 @@
       </div>
     </div>
   </div>
+  <!-- animation ex -->
+  <div class="example_wrap"></div>
+
+
+
+
   <!-- Popup -->
   <!-- starbucks popup -->
   <div class="popup starbucks_popup">
@@ -255,7 +261,8 @@
       <div class="explain">
         스타벅스 웹 메인 페이지를 클론 코딩하였습니다.<br>
         ScrollMagic과 gsap를 이용하여 애니메이션을 구현했습니다.<br>
-        슬라이더는 Swiper를 이용해 구현했습니다.
+        슬라이더는 Swiper를 이용해 구현했습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%
       </div>
       <div class="cont tool">
         <h4>tool</h4>
@@ -272,35 +279,8 @@
       </div>
     </div>
   </div>
-  <!-- bank mobile -->
-  <div class="popup bank_popup">
-    <div class="popup_header">
-      <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
-    </div>
-    <div class="popup_cont">
-      <h1>은행 웹앱 퍼블리싱</h1>
-      <h3>은행 웹앱 구현(mobile)</h3>
-      <div class="explain">
-        은행 웹앱을 구현하였습니다.<br>
-        계좌 이용내역 데이터를 불러와 직접 바인딩하여<br>
-        잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.
-      </div>
-      <div class="cont tool">
-        <h4>tool</h4>
-        <em>ScrollMagic / swiper / lodash / gsap / ScrollToPlugin</em>
-      </div>
-      <div class="cont link">
-        <h4>link</h4>
-        <a href="//aquamarine-selkie-53396f.netlify.app" target="_blank">aquamarine-selkie-53396f.netlify.app</a>
-      </div>
-      <div class="cont popMain">
-        <h4>main</h4>
-        <img src="./common/img/starbucks_main.png" alt="스타벅스">
-      </div>
-    </div>
-  </div>
   <!-- 키워드림론 모바일 -->
-  <div class="popup">
+  <div class="popup kwd_popup">
     <div class="popup_header">
       <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
     </div>
@@ -310,7 +290,8 @@
       <div class="explain">
         주식담보대출을 해주는 서비스 메인 페이지(mobile)을 구현였습니다.<br>
         디자이너의 디자인을 받아 디자인대로 구현하였습니다.<br>
-        메인페이지 애니메이션에 집중했습니다.
+        메인페이지 애니메이션에 집중했습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%
       </div>
       <div class="cont tool">
         <h4>tool</h4>
@@ -323,11 +304,15 @@
       </div>
       <div class="cont popMain">
         <h4>main</h4>
-        <img src="./common/img/starbucks_main.png" alt="스타벅스">
+        <img class="giffile" src="./common/img/kwd_gif1.gif" alt="키워드림론">
+        <img class="giffile" src="./common/img/kwd_gif2.gif" alt="키워드림론">
+        <img class="giffile" src="./common/img/kwd_gif3.gif" alt="키워드림론">
+        <img class="giffile" src="./common/img/kwd_gif4.gif" alt="키워드림론">
       </div>
     </div>
   </div>
-  <div class="popup">
+  <!-- bank mobile -->
+  <div class="popup bank_popup">
     <div class="popup_header">
       <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
     </div>
@@ -337,7 +322,8 @@
       <div class="explain">
         은행 웹앱을 구현하였습니다.<br>
         계좌 이용내역 데이터를 불러와 직접 바인딩하여<br>
-        잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.
+        잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%
       </div>
       <div class="cont tool">
         <h4>tool</h4>
@@ -345,25 +331,28 @@
       </div>
       <div class="cont link">
         <h4>link</h4>
-        <a href="//aquamarine-selkie-53396f.netlify.app">//aquamarine-selkie-53396f.netlify.app</a>
+        <a href="//aquamarine-selkie-53396f.netlify.app" target="_blank">aquamarine-selkie-53396f.netlify.app</a>
       </div>
       <div class="cont popMain">
         <h4>main</h4>
-        <img src="./common/img/starbucks_main.png" alt="스타벅스">
+        <img class="giffile" src="./common/img/bank_gif1.gif" alt="bank">
+        <img class="giffile" src="./common/img/bank_gif2.gif" alt="bank">
       </div>
     </div>
   </div>
-  <div class="popup">
+  <!-- emoney homepage -->
+  <div class="popup emoney_popup">
     <div class="popup_header">
       <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
     </div>
     <div class="popup_cont">
-      <h1>은행 웹앱 퍼블리싱</h1>
-      <h3>은행 웹앱 구현(mobile)</h3>
+      <h1>eMoney 회사 홈페이지 퍼블리싱</h1>
+      <h3>회사 홈페이지 퍼블리싱(반응형)</h3>
       <div class="explain">
-        은행 웹앱을 구현하였습니다.<br>
-        계좌 이용내역 데이터를 불러와 직접 바인딩하여<br>
-        잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.
+        회사 홈페이지를 퍼블리싱하였습니다. 반응형으로 작업하였고,<br>
+        jQuery, spap.svg, slick등의 라이브러리를 사용하였고<br>
+        카카오지도 api를 활용하여 회사 위치를 표시했습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%(혼자 진행)
       </div>
       <div class="cont tool">
         <h4>tool</h4>
@@ -371,41 +360,77 @@
       </div>
       <div class="cont link">
         <h4>link</h4>
-        <a href="//aquamarine-selkie-53396f.netlify.app">//aquamarine-selkie-53396f.netlify.app</a>
+        <a href="//hoseonkwak.github.io/emoney_homepage/main.html"
+          target="_blank">hoseonkwak.github.io/emoney_homepage/main.html</a>
       </div>
       <div class="cont popMain">
         <h4>main</h4>
-        <img src="./common/img/starbucks_main.png" alt="스타벅스">
+        <p></p>
+        <img src="./common/img/emoney.jpg" alt="이머니">
       </div>
     </div>
   </div>
-  <div class="popup">
+  <!-- mbti -->
+  <div class="popup mbti_popup">
     <div class="popup_header">
       <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
     </div>
     <div class="popup_cont">
-      <h1>은행 웹앱 퍼블리싱</h1>
-      <h3>은행 웹앱 구현(mobile)</h3>
+      <h1>주식으로 보는 내 성향 테스트</h1>
+      <h3>MBTI 테스트(mobile)</h3>
       <div class="explain">
-        은행 웹앱을 구현하였습니다.<br>
-        계좌 이용내역 데이터를 불러와 직접 바인딩하여<br>
-        잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.
+        제가 아이디어를 생각해 제안하여 기획해서 만든 페이지입니다.<br>
+        mbti 테스트를 기반으로 만들었습니다.<br>
+        금감원 정책이슈 때문에 홍보를 하지 못하였으나 사용자가 18,000명이 넘게 사용했습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%(혼자 진행)
       </div>
       <div class="cont tool">
         <h4>tool</h4>
-        <em>ScrollMagic / swiper / lodash / gsap / ScrollToPlugin</em>
+        <em>jQuery</em>
       </div>
       <div class="cont link">
         <h4>link</h4>
-        <a href="//aquamarine-selkie-53396f.netlify.app">//aquamarine-selkie-53396f.netlify.app</a>
+        <a href="//www.x1.co.kr/mbti" target="_blank">www.x1.co.kr/mbti</a>
       </div>
       <div class="cont popMain">
         <h4>main</h4>
-        <img src="./common/img/starbucks_main.png" alt="스타벅스">
+        <img src="./common/img/mbti.jpg" alt="mbti">
       </div>
     </div>
   </div>
-
+  <!-- news -->
+  <div class="popup news_popup">
+    <div class="popup_header">
+      <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
+    </div>
+    <div class="popup_cont">
+      <h1>뉴욕 타임즈 뉴스 검색 페이지</h1>
+      <h3>뉴욕 타임즈 api를 활용한 뉴스 검색 페이지(web)</h3>
+      <div class="explain">
+        리액트로 뉴욕타임즈 api를 활용하여 뉴스 검색 사이트를 만들었습니다.<br>
+        데이터를 불러오고 가공하여 뿌려주는것에 집중했습니다.<br>
+        로컬 스토리지에 최근 검색어 5개를 저장하여<br>
+        새로고침 하여도 검색했던 검색어를 계속 노출하였습니다.<br>
+        무한스크롤도 구현하였습니다.<br><br>
+        ※ 참여도 - 퍼블리싱 100%(혼자 진행)
+        <div class="cont tool">
+          <h4>tool</h4>
+          <em>REACT / 뉴욕타임즈 API / 무한스크롤 / styled-components</em>
+        </div>
+        <div class="cont link">
+          <h4>link</h4>
+          <a href="//hoseonkwak.github.io/news_mini_project/index.html"
+            target="_blank">hoseonkwak.github.io/news_mini_project/index.html</a>
+        </div>
+        <div class="cont popMain">
+          <h4>main</h4>
+          <img src="./common/img/work5-1.jpg" alt="뉴스검색">
+          <p>무한스크롤</p>
+          <img src="./common/img/news_gif.gif" alt="뉴스검색">
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 <script>
 

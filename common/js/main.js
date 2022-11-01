@@ -199,7 +199,7 @@ function workSlide() {
       spacing: -0.5,
       loop: false,
       buttons: true,
-      scrollwheel: false,
+      scrollwheel: true,
     });
   });
 }
@@ -216,6 +216,7 @@ function popup() {
         //console.log(popupDivs[i]);
         slideLi[i].classList.remove("on");
         popupDivs[i].classList.remove("on");
+        document.body.classList.add("popon");
       });
       slideLi[i].classList.add("on");
       popupDivs[i].classList.add("on");
@@ -228,6 +229,7 @@ function popup() {
     closeBtn[i].onclick = () => {
       closeBtn.forEach((el, i) => {
         popupDivs[i].classList.remove("on");
+        document.body.classList.remove("popon");
       });
     };
   });
