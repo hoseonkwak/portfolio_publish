@@ -161,7 +161,8 @@ function moveWrap() {
       } else if (i === 1) {
         window.scroll({ top: workTop, behavior: "smooth" });
       } else if (i === 2) {
-        window.scroll({ top: contactTop, behavior: "smooth" });
+        // window.scroll({ top: contactTop, behavior: "smooth" });
+        window.scroll({ top: document.body.scrollHeight, behavior: "smooth" }); // 맨 아래로
       }
     };
   });
@@ -182,7 +183,7 @@ function indexClickMove() {
       } else if (i === 1) {
         window.scroll({ top: workTop, behavior: "smooth" });
       } else if (i === 2) {
-        window.scroll({ top: contactTop, behavior: "smooth" });
+        window.scroll({ top: document.body.scrollHeight, behavior: "smooth" }); // 맨 아래로
       }
     };
   });
