@@ -22,6 +22,8 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 popup(); //popup
+moveWrap(); // move scroll
+indexClickMove(); // index 클릭시 스크롤 이동
 
 /* ==================================== */
 
@@ -87,12 +89,16 @@ window.addEventListener("scroll", () => {
     document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
     document.querySelector(".about_wrap .heading_wrap > span").classList.add("active");
     document.querySelector(".about_wrap .heading_wrap .cont_title").classList.add("active");
+    document.querySelector(".heading_wrap .cont_img_wrap .image_mask").classList.add("active");
   } else {
     document.querySelector(".port_wrap").style.backgroundColor = "#f1f1f1";
     document.querySelector(".about_wrap").style.backgroundColor = "#f1f1f1";
     document.querySelector(".about_wrap .heading_wrap > span").classList.remove("active");
     document.querySelector(".about_wrap .heading_wrap .cont_title").classList.remove("active");
+    document.querySelector(".heading_wrap .cont_img_wrap .image_mask").classList.remove("active");
   }
+
+  // if(indexTop < 0)
 
   // work 영역
   const aboutImgTop = document.querySelector(".about_wrap .heading_wrap .cont_img_wrap .image_mask").getBoundingClientRect().top;
@@ -101,6 +107,9 @@ window.addEventListener("scroll", () => {
     //console.log("여기");
     document.querySelector(".work_wrap .heading_wrap > span").classList.add("active");
     document.querySelector(".work_wrap .heading_wrap .cont_title").classList.add("active");
+  } else {
+    document.querySelector(".work_wrap .heading_wrap > span").classList.remove("active");
+    document.querySelector(".work_wrap .heading_wrap .cont_title").classList.remove("active");
   }
 
   // example 영역
@@ -108,17 +117,76 @@ window.addEventListener("scroll", () => {
   if (workTitleTop + 100 < 0) {
     document.querySelector(".example_wrap .title_wrap div.move1").classList.add("active");
     document.querySelector(".example_wrap .title_wrap div.move2").classList.add("active");
+  } else {
+    document.querySelector(".example_wrap .title_wrap div.move1").classList.remove("active");
+    document.querySelector(".example_wrap .title_wrap div.move2").classList.remove("active");
   }
 
   // animation 영역
   const animationTop = document.querySelector(".example_wrap .animation_iframe").getBoundingClientRect().top;
   if (animationTop + 200 < 0) {
     document.querySelector(".animation_wrap").classList.add("on");
+  } else {
+    document.querySelector(".animation_wrap").classList.remove("on");
   }
   // console.log(scrollTop);
   // console.log(animationTxt.getBoundingClientRect().top);
   // console.log(animationTxt.getBoundingClientRect().top + scrollTop);
+
+  // contact 영역
+  const lastAniTop = document.querySelector(".animation_wrap .animation_list .list_area:last-child .codepen_cont").getBoundingClientRect().top;
+  //console.log(lastAniTop);
+  if (lastAniTop < 0) {
+    document.querySelector(".contact_wrap .heading_wrap > span").classList.add("active");
+    document.querySelector(".contact_wrap .heading_wrap .cont_title").classList.add("active");
+  } else {
+    document.querySelector(".contact_wrap .heading_wrap > span").classList.remove("active");
+    document.querySelector(".contact_wrap .heading_wrap .cont_title").classList.remove("active");
+  }
 });
+
+//헤더 클릭시 스크롤 이동
+function moveWrap() {
+  const headerLiArr = document.querySelectorAll(".header_wrap .nav ul li");
+  const aboutTop = document.querySelector(".about_wrap").offsetTop;
+  const workTop = document.querySelector(".work_wrap").offsetTop;
+  const contactTop = document.querySelector(".contact_wrap").offsetTop;
+
+  headerLiArr.forEach((el, i) => {
+    el.onclick = (e) => {
+      e.preventDefault();
+      //console.log(e, i, aboutTop);
+      if (i === 0) {
+        window.scroll({ top: aboutTop, behavior: "smooth" });
+      } else if (i === 1) {
+        window.scroll({ top: workTop, behavior: "smooth" });
+      } else if (i === 2) {
+        window.scroll({ top: contactTop, behavior: "smooth" });
+      }
+    };
+  });
+}
+
+// index 클릭시 스크롤 이동
+function indexClickMove() {
+  const menuItemArr = document.querySelectorAll(".port_wrap .menu_list .menu_item");
+  const aboutTop = document.querySelector(".about_wrap").offsetTop;
+  const workTop = document.querySelector(".work_wrap").offsetTop;
+  const contactTop = document.querySelector(".contact_wrap").offsetTop;
+
+  menuItemArr.forEach((el, i) => {
+    el.onclick = (e) => {
+      e.preventDefault();
+      if (i === 0) {
+        window.scroll({ top: aboutTop, behavior: "smooth" });
+      } else if (i === 1) {
+        window.scroll({ top: workTop, behavior: "smooth" });
+      } else if (i === 2) {
+        window.scroll({ top: contactTop, behavior: "smooth" });
+      }
+    };
+  });
+}
 
 // 메인화면 마우스에 따라 움직이기
 function mouseMoveEffect(e) {
