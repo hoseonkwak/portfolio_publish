@@ -103,12 +103,21 @@ window.addEventListener("scroll", () => {
     document.querySelector(".work_wrap .heading_wrap .cont_title").classList.add("active");
   }
 
-  // console.log(scrollTop);
+  // example 영역
   const workTitleTop = document.querySelector(".work_wrap .heading_wrap .cont_title span:last-child").getBoundingClientRect().top;
   if (workTitleTop + 100 < 0) {
     document.querySelector(".example_wrap .title_wrap div.move1").classList.add("active");
     document.querySelector(".example_wrap .title_wrap div.move2").classList.add("active");
   }
+
+  // animation 영역
+  const animationTop = document.querySelector(".example_wrap .animation_iframe").getBoundingClientRect().top;
+  if (animationTop + 200 < 0) {
+    document.querySelector(".animation_wrap").classList.add("on");
+  }
+  // console.log(scrollTop);
+  // console.log(animationTxt.getBoundingClientRect().top);
+  // console.log(animationTxt.getBoundingClientRect().top + scrollTop);
 });
 
 // 메인화면 마우스에 따라 움직이기
