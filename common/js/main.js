@@ -1,7 +1,8 @@
 /* =============== 실행 =============== */
-// onresize = (e) => {
-//   mainHeight();
-// };
+onresize = (e) => {
+  moveWrap();
+  indexClickMove();
+};
 workSlide(); // work 슬라이드
 
 window.addEventListener("DOMContentLoaded", function () {
@@ -53,6 +54,8 @@ window.addEventListener("scroll", () => {
     second_main.style.opacity = 0;
     main_fore_Wrap.style.opacity = 1;
     main_back_Wrap.style.opacity = 1;
+    main_fore_Wrap.style.transform = `translateY(0%)`;
+    main_back_Wrap.style.transform = `translateY(0%)`;
   }
   if (scrollTop > mainTextTop - 200 && scrollTop < introduceTop + 200) {
     second_main.style.opacity = percentage;
@@ -60,7 +63,7 @@ window.addEventListener("scroll", () => {
     main_back_Wrap.style.opacity = 1 - percentage;
     main_fore_Wrap.style.transform = `translateY(${percentage * -40}%)`;
     main_back_Wrap.style.transform = `translateY(${percentage * -40}%)`;
-    // console.log(percentage*(-40));
+    //console.log(percentage);
     //console.log(1-percentage);
   }
   if (scrollTop > introduceTop) {
@@ -79,11 +82,13 @@ window.addEventListener("scroll", () => {
     lastScrollTop = scrollTop;
   }
 
-  // about 영역
+  //index 영역
   const indexTop = document.querySelector(".port_wrap .menu_list .menu_item .menu_item_txt").getBoundingClientRect().top;
   indexHover(indexTop);
-  // console.log(indexTop);
+  //console.log(indexTop);
   // console.log(scrollTop);
+
+  // about 영역
   if (indexTop < 0) {
     document.querySelector(".port_wrap").style.backgroundColor = "#b6d4e9";
     document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
@@ -97,14 +102,18 @@ window.addEventListener("scroll", () => {
     document.querySelector(".about_wrap .heading_wrap .cont_title").classList.remove("active");
     document.querySelector(".heading_wrap .cont_img_wrap .image_mask").classList.remove("active");
   }
-
-  // if(indexTop < 0)
+  const aboutWrapTop = document.querySelector(".about_wrap").getBoundingClientRect().top;
+  if (aboutWrapTop < 0) {
+    document.querySelector(".about_wrap .cont_text").classList.add("active");
+  } else {
+    document.querySelector(".about_wrap .cont_text").classList.remove("active");
+  }
 
   // work 영역
   const aboutImgTop = document.querySelector(".about_wrap .heading_wrap .cont_img_wrap .image_mask").getBoundingClientRect().top;
+  const aboutContTop = document.querySelector(".about_wrap .cont_text").getBoundingClientRect().top;
   // console.log(aboutImgTop);
   if (aboutImgTop + 200 < 0) {
-    //console.log("여기");
     document.querySelector(".work_wrap .heading_wrap > span").classList.add("active");
     document.querySelector(".work_wrap .heading_wrap .cont_title").classList.add("active");
   } else {
@@ -112,22 +121,32 @@ window.addEventListener("scroll", () => {
     document.querySelector(".work_wrap .heading_wrap .cont_title").classList.remove("active");
   }
 
+  if (aboutContTop < 0) {
+    document.querySelector(".flipster_cont").classList.add("active");
+  } else {
+    document.querySelector(".flipster_cont").classList.remove("active");
+  }
+
   // example 영역
-  const workTitleTop = document.querySelector(".work_wrap .heading_wrap .cont_title span:last-child").getBoundingClientRect().top;
-  if (workTitleTop + 100 < 0) {
+  const workSlideTop = document.querySelector(".work_slide_wrap").getBoundingClientRect().top;
+  if (workSlideTop < 0) {
     document.querySelector(".example_wrap .title_wrap div.move1").classList.add("active");
     document.querySelector(".example_wrap .title_wrap div.move2").classList.add("active");
+    document.querySelector(".example_wrap .cont_text").classList.add("active");
   } else {
     document.querySelector(".example_wrap .title_wrap div.move1").classList.remove("active");
     document.querySelector(".example_wrap .title_wrap div.move2").classList.remove("active");
+    document.querySelector(".example_wrap .cont_text").classList.remove("active");
   }
 
   // animation 영역
   const animationTop = document.querySelector(".example_wrap .animation_iframe").getBoundingClientRect().top;
   if (animationTop + 200 < 0) {
     document.querySelector(".animation_wrap").classList.add("on");
+    document.querySelector(".animation_wrap .cont_text").classList.add("active");
   } else {
     document.querySelector(".animation_wrap").classList.remove("on");
+    document.querySelector(".animation_wrap .cont_text").classList.remove("active");
   }
   // console.log(scrollTop);
   // console.log(animationTxt.getBoundingClientRect().top);
@@ -150,7 +169,9 @@ function moveWrap() {
   const headerLiArr = document.querySelectorAll(".header_wrap .nav ul li");
   const aboutTop = document.querySelector(".about_wrap").offsetTop;
   const workTop = document.querySelector(".work_wrap").offsetTop;
+  //const workTop = window.pageYOffset + document.querySelector(".work_wrap").getBoundingClientRect().top;
   const contactTop = document.querySelector(".contact_wrap").offsetTop;
+  //window.pageYOffset + menuList.getBoundingClientRect().top
 
   headerLiArr.forEach((el, i) => {
     el.onclick = (e) => {
@@ -161,8 +182,8 @@ function moveWrap() {
       } else if (i === 1) {
         window.scroll({ top: workTop, behavior: "smooth" });
       } else if (i === 2) {
-        // window.scroll({ top: contactTop, behavior: "smooth" });
-        window.scroll({ top: document.body.scrollHeight, behavior: "smooth" }); // 맨 아래로
+        window.scroll({ top: contactTop, behavior: "smooth" });
+        //window.scroll({ top: document.body.scrollHeight, behavior: "smooth" }); // 맨 아래로
       }
     };
   });
@@ -183,7 +204,7 @@ function indexClickMove() {
       } else if (i === 1) {
         window.scroll({ top: workTop, behavior: "smooth" });
       } else if (i === 2) {
-        window.scroll({ top: document.body.scrollHeight, behavior: "smooth" }); // 맨 아래로
+        window.scroll({ top: contactTop, behavior: "smooth" }); // 맨 아래로
       }
     };
   });
@@ -234,23 +255,30 @@ function indexHover(indexTop) {
   const menuImage = document.querySelector(".port_wrap .menu_list .menu_image");
   const menuImageInner = document.querySelectorAll(".port_wrap .menu_list .menu_image .menu_image_mask img");
 
+  const menuList = document.querySelector(".port_wrap .menu_list");
+  let menuListTop = window.pageYOffset + menuList.getBoundingClientRect().top;
+  let menuImgH = document.querySelector(".port_wrap .menu_list .menu_image").offsetHeight;
+  let menuImgH2 = menuImgH / 4;
+  //console.log(menuImgH2);
+
   menuItemArr.forEach((el, index) => {
+    let memuItemArrTop = window.pageYOffset + menuItemArr[index].getBoundingClientRect().top;
     el.onmouseenter = () => {
       //console.log(index);
       if (index === 0) {
         document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#b6d4e9;`;
-        menuImage.style.transform = `translate(17px, 237px)`;
+        menuImage.style.transform = `translate(17px, ${memuItemArrTop - menuListTop - menuImgH2}px)`;
         //console.log(menuImageInner[index]);
         menuImageInner[0].classList.add("active");
         document.querySelector(".about_wrap").style.backgroundColor = "#b6d4e9";
       } else if (index === 1) {
         document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#bcdace;`;
-        menuImage.style.transform = `translate(150px, 381px)`;
+        menuImage.style.transform = `translate(150px, ${memuItemArrTop - menuListTop - menuImgH2}px)`;
         menuImageInner[index].classList.add("active");
         document.querySelector(".about_wrap").style.backgroundColor = "#bcdace";
       } else if (index === 2) {
         document.querySelector(".port_wrap").style.cssText = `--backgroundColor:#eee1d2;`;
-        menuImage.style.transform = `translate(220px, 523px)`;
+        menuImage.style.transform = `translate(220px, ${memuItemArrTop - menuListTop - menuImgH2}px)`;
         menuImageInner[index].classList.add("active");
         document.querySelector(".about_wrap").style.backgroundColor = "#eee1d2";
       }
