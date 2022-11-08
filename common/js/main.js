@@ -3,9 +3,11 @@ onresize = (e) => {
   moveWrap();
   indexClickMove();
 };
-workSlide(); // work 슬라이드
-
-window.addEventListener("DOMContentLoaded", function () {
+window.onload = () => {
+  document.querySelector(".loading_wrap").style.display = `none`;
+  document.querySelector(".load_comple").style.display = `block`;
+  //alert("로드 완료");
+  workSlide(); // work 슬라이드
   document.addEventListener("mousemove", mouseMoveEffect); // 메인 마우스 움직일때
   changeImg(); // 메인화면 text 이미지 바꾸기
   indexHover(); // index배경 hover에 따라 바꾸기
@@ -20,11 +22,11 @@ window.addEventListener("DOMContentLoaded", function () {
       //document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
     });
   }, 500);
-});
 
-popup(); //popup
-moveWrap(); // move scroll
-indexClickMove(); // index 클릭시 스크롤 이동
+  popup(); //popup
+  moveWrap(); // move scroll
+  indexClickMove(); // index 클릭시 스크롤 이동
+};
 
 /* ==================================== */
 
