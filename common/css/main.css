@@ -51,9 +51,9 @@
 .main .second_main_wrap{position: absolute; top: 0; width: 100%; height: 100%; background-color: #81aeb3; z-index: 1; -webkit-transition: opacity 300ms cubic-bezier(.215,.61,.355,1); -o-transition: opacity 300ms cubic-bezier(.215,.61,.355,1); transition: opacity 300ms cubic-bezier(.215,.61,.355,1); opacity: 0;}
 .main .second_main_wrap .second_background{width: 100%; height: 50%; position: sticky; top: 0; overflow: hidden; background: url(../img/second_background.jpg) center; background-size: cover;}
 .main .second_main_wrap .introduce_text_wrap{position: absolute; bottom: 0; width: 100%; height: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center;}
-.main .second_main_wrap .introduce_text_wrap h3{font-family: 'yg-jalnan'; font-size: 96px; color: #fff; text-shadow: 0.05em 0.05em #274b6a; line-height: 1.2;}
-.main .second_main_wrap .introduce_text_wrap h3 span{position: relative; display: block;}
-.main .second_main_wrap .introduce_text_wrap h3 span::after{content: attr(data-shadow); position: absolute; top: 0.11em; left: 0.11em; width: 100%; z-index: -1; text-shadow: none; background: -o-linear-gradient(45deg, transparent 45%, #ffc800 45%, #fff 55%, transparent 0); background: linear-gradient(45deg, transparent 45%, #ffc800 45%, #fff 55%, transparent 0); background-size: 0.07em 0.07em; -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-animation: shad-anim 25s linear infinite; animation: shad-anim 25s linear infinite;}
+.main .second_main_wrap .introduce_text_wrap h2{font-family: 'yg-jalnan'; font-size: 96px; color: #fff; text-shadow: 0.05em 0.05em #274b6a; line-height: 1.2;}
+.main .second_main_wrap .introduce_text_wrap h2 span{position: relative; display: block;}
+.main .second_main_wrap .introduce_text_wrap h2 span::after{content: attr(data-shadow); position: absolute; top: 0.11em; left: 0.11em; width: 100%; z-index: -1; text-shadow: none; background: -o-linear-gradient(45deg, transparent 45%, #ffc800 45%, #fff 55%, transparent 0); background: linear-gradient(45deg, transparent 45%, #ffc800 45%, #fff 55%, transparent 0); background-size: 0.07em 0.07em; -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-animation: shad-anim 25s linear infinite; animation: shad-anim 25s linear infinite;}
 @-webkit-keyframes shad-anim {
   0% {background-position: 0 0}
   0% {background-position: 100% -100%}
@@ -241,7 +241,7 @@
 /* contact 영역 */
 .contact_wrap{padding: 140px 0; background-color: #eee1d2; color: #8d4133;}
 .contact_wrap .contact_cont{display: -webkit-box;display: -ms-flexbox;display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 700px; margin: 250px auto 0;}
-.contact_wrap .contact_cont i{font-size: 100px; -webkit-animation: tada 2.5s infinite linear; animation: tada 2.5s infinite linear;}
+.contact_wrap .contact_cont i{font-size: 60px; -webkit-animation: tada 2.5s infinite linear; animation: tada 2.5s infinite linear;}
 .contact_wrap .contact_cont ul li{display: -webkit-box;display: -ms-flexbox;display: flex; margin-bottom: 20px; font-size: 24px;}
 .contact_wrap .contact_cont ul li span.tit{width: 140px; text-transform: uppercase; font-weight: bold;}
 .contact_wrap .contact_cont ul li span a:hover{text-decoration: underline;}
@@ -318,10 +318,10 @@
 .popup .popup_header{display: block; padding: 20px; text-align: right;}
 .popup .popup_header .close_btn{background: none; width: 36px; height: 36px; cursor: pointer;}
 .popup .popup_cont{width: 60%; margin: 0 auto;}
-.popup .popup_cont h1{margin-bottom: 40px;}
-.popup .popup_cont h3{font-size: 24px; margin-bottom: 20px;}
+.popup .popup_cont h3{margin-bottom: 40px; font-size: 36px;}
+.popup .popup_cont h4{font-size: 24px; margin-bottom: 20px;}
 .popup .popup_cont .cont{margin: 40px 0;}
-.popup .popup_cont .cont h4{color: #1f6f30; font-weight: bold; font-size: 20px; margin-bottom: 16px; text-transform: uppercase;}
+.popup .popup_cont .cont h5{color: #1f6f30; font-weight: bold; font-size: 20px; margin-bottom: 16px; text-transform: uppercase;}
 .popup .popup_cont .cont em{font-style: normal; font-size: 15px;}
 .popup .popup_cont .cont.link a:hover{text-decoration: underline;}
 .popup .popup_cont .cont img{width: 100%;}
