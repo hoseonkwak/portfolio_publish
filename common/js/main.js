@@ -157,7 +157,7 @@ window.addEventListener("scroll", () => {
   // contact 영역
   const lastAniTop = document.querySelector(".animation_wrap .animation_list .list_area:last-child .codepen_cont").getBoundingClientRect().top;
   //console.log(lastAniTop);
-  if (lastAniTop < 0) {
+  if (lastAniTop + 300 < 0) {
     document.querySelector(".contact_wrap .heading_wrap > span").classList.add("active");
     document.querySelector(".contact_wrap .heading_wrap .cont_title").classList.add("active");
   } else {
