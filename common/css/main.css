@@ -102,7 +102,7 @@
 .port_wrap .menu_list .menu_header .menu_header_title{font-size: 120px; font-family: 'Fraunces', serif; font-weight: 400; margin-left: -1em;}
 .port_wrap .menu_list .menu_item{position: relative; line-height: 0.82em; text-transform: uppercase; font-size: 112px; letter-spacing: -0.06em; font-weight: 600;}
 .port_wrap .menu_list .menu_item:nth-child(2){margin-left: -2.6em;}
-.port_wrap .menu_list .menu_item:nth-child(3){margin-left: -1.0;}
+.port_wrap .menu_list .menu_item:nth-child(3){margin-left: -0.2em;}
 .port_wrap .menu_list .menu_item:nth-child(4){margin-left: 0em;}
 .port_wrap .menu_list .menu_item .menu_item_txt{font-family: 'SUIT-Regular'; -webkit-transition: opacity .35s cubic-bezier(.645,.045,.355,1); -o-transition: opacity .35s cubic-bezier(.645,.045,.355,1); transition: opacity .35s cubic-bezier(.645,.045,.355,1); cursor: pointer;}
 .port_wrap .menu_list .menu_item .menu_item_txt .menu_item_number{font-size: 16px; vertical-align: top; line-height: 1; font-weight: 600; letter-spacing: 0;}
