@@ -218,7 +218,7 @@
 .example_wrap .cont_text{opacity: 0; -webkit-transform: translateY(60px); -ms-transform: translateY(60px); transform: translateY(60px); -webkit-transition: opacity .3s cubic-bezier(.645,.045,.355,1),-webkit-transform .6s cubic-bezier(.645,.045,.355,1); transition: opacity .3s cubic-bezier(.645,.045,.355,1),-webkit-transform .6s cubic-bezier(.645,.045,.355,1); -o-transition: transform .6s cubic-bezier(.645,.045,.355,1),opacity .3s cubic-bezier(.645,.045,.355,1); transition: transform .6s cubic-bezier(.645,.045,.355,1),opacity .3s cubic-bezier(.645,.045,.355,1); transition: transform .6s cubic-bezier(.645,.045,.355,1),opacity .3s cubic-bezier(.645,.045,.355,1),-webkit-transform .6s cubic-bezier(.645,.045,.355,1);}
 .example_wrap .cont_text.active{opacity: 1; -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0);}
 .example_wrap .animation_iframe{margin-top: 100px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;}
-.example_wrap .animation_iframe iframe{width: 100%; max-width: 1200px; min-height: 800px; margin: 0 auto;}
+.example_wrap .animation_iframe iframe{width: 100%; max-width: 1200px; min-height: 800px; margin: 0 auto; border: none;}
 
 .animation_wrap{background: #3b71ae; color: #fff; padding: 120px 0;}
 .animation_wrap .title_wrap{max-width: 1300px; margin: 0 auto 80px; padding: 0 40px}
