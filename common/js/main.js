@@ -4,7 +4,7 @@ onresize = (e) => {
   indexClickMove();
 };
 window.onload = () => {
-  // document.querySelector(".loading_wrap").style.display = `none`;
+  document.querySelector(".loading_wrap").style.display = `none`;
   document.querySelector(".load_comple").style.display = `block`;
   //alert("로드 완료");
   document.addEventListener("mousemove", mouseMoveEffect); // 메인 마우스 움직일때
