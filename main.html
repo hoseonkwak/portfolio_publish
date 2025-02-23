@@ -19,21 +19,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.flipster/1.1.5/jquery.flipster.min.css"
     integrity="sha512-V+/5MWGpw2+bCdSIsyanskFA5W7m7tQxOucGv7STlkQeXlaj2YHg26U3UCq60uStT2yCWigdU7zdNSK7xKHImQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+  <script src="./common/js/swiper-bundle.min.js"></script>
   <script src="./common/js/jquery.flipster.min.js"></script>
-  <link rel="stylesheet" href="./common/css/jquery.flipster.min.css">
   <!-- 웹폰트 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- lottie -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <!-- css -->
+  <link rel="stylesheet" href="./common/css/swiper.min.css">
+  <link rel="stylesheet" href="./common/css/jquery.flipster.min.css">
   <link rel="stylesheet" href="./common/css/set.css">
   <link rel="stylesheet" href="./common/css/main.css">
 </head>
 
 <body>
-  <div class="loading_wrap">
+  <!-- <div class="loading_wrap">
     <lottie-player src="./common/loading.json" background="transparent" speed="1" loop="" autoplay=""></lottie-player>
-  </div>
+  </div> -->
   <div class="load_comple">
     <header class="header">
       <div class="header_inner">
@@ -170,13 +172,16 @@
         </div>
         <div class="cont_text">
           <div class="introduce_area cont">
-            안녕하세요. 주도적인 업무 성향과 넓은 개발 시야를 갖춘 개발자 곽호선입니다. 저는 정보통신공학을 전공했고, 벡엔드(2년)/퍼블리셔(2년) 실무 경험을 보유하고 있습니다.
-            벡엔드 개발자로 근무 당시 SK C&C와 프로젝트를 진행하며 프론트엔드 개발자와 협업해본 경험이 있습니다. 이때 시각적으로 사용자에게 보여지는 프론트엔드 분야에 강한 흥미가 생겨
-            이후 직무 전환을 위해 그린컴퓨터학원에서 퍼블리셔 양성 과정을 6개월 진행하여 퍼블리셔로 2년 근무 했습니다.
+            <b>주도적으로 문제를 해결하고, 넓은 개발 시야를 가진 퍼블리셔 곽호선입니다.</b>
+            정보통신공학을 전공하고, 백엔드(2년)와 퍼블리셔(4년) 실무 경험을 쌓아왔습니다.
+            퍼블리셔로서 <b>플랫폼 기업(2년)과 웹 에이전시(2년)에서의 경험</b> 을 통해,
+            <b>자사 콘텐츠를 기반으로 한 업무와 고객사의 요청을 처리하는 업무를 모두 경험</b> 했습니다.
+            이를 통해 <b>다양한 직군과의 협업 능력뿐만 아니라, 고객과의 원활한 소통 역량도 갖출 수 있었습니다.</b>
           </div>
           <div class="introduce_area cont">
-            최근에는 프론트엔드 개발자로서의 역량을 더 키우기 위해 패스트캠퍼스에서 진행하는 react를 배울 수 있는 부트캠프에 참여해 프론트엔드 개발자 양성과정을 4달동안 진행하여 수료하였습니다.
-            마크업을 하듯이 차근차근 기초와 구조를 정확히 잡아가며 계속 배우고, 도전하며 성장하는 개발자가 되도록 노력할 것입니다.
+            특히 <b>에이전시에서의 경험을 통해 다양한 고객과 수많은 코드들을 접하며 빠르게 성장할 수 있었습니다.</b>
+            또한, <b>새로운 기술 습득을 위해 패스트캠퍼스 부트캠프(4개월)에서 React를 집중적으로 학습하며 프론트엔드 역량을 더욱 강화했습니다.</b>
+            앞으로도 <b>마크업을 하듯 구조를 탄탄히 다지며, 끊임없이 배우고 도전하는 퍼블리셔로 성장해 나가겠습니다.</b>
           </div>
         </div>
       </div>
@@ -231,11 +236,20 @@
                 </div>
               </li>
               <li class="swiper-slide">
-                <img src="./common/img/work3.jpg" alt="mbti">
+                <img src="./common/img/bon.jpg" alt="bonif">
                 <div class="hover_box">
                   <div class="hover_text">
                     <p>detail page</p>
-                    MBTI page
+                    bonif HomePage
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <img src="./common/img/audi-mo.jpg" alt="audi">
+                <div class="hover_box">
+                  <div class="hover_text">
+                    <p>detail page</p>
+                    audi 딜러 관리 웹앱
                   </div>
                 </div>
               </li>
@@ -251,12 +265,48 @@
             </ul>
           </div>
         </div>
-        <div class="cont_text">
-          HTML, CSS, JAVASCRIPT, JQUERY를 이용하여 웹사이트를 만들고, REACT를 활용하여
-          뉴스 검색 사이트를 만들었습니다.
-          위 사이트의 참여율은 모두 100%(마크업)로 혼자 제작하였습니다.
-          디자이너의 디자인을 최대한 그대로 마크업하였고, 디자이너와 기획자와의 소통을 최우선으로 했습니다.
-          REACT는 gitHub에 계속적으로 예제를 만들어 업데이트하고 있습니다.
+        <div class="cont_text flipster_info">
+          <ul class="flipster-wrapper">
+            <li class="swiper-slide">
+              HTML, CSS, 바닐라스크립트를 활용하여 <b>스타벅스 웹 메인 페이지를 클론 코딩</b>하였습니다.<br>
+              <b>기본적인 마크업과 기초적인 스크립트 구현에 중점을 두어 코딩</b> 하였습니다.<br>
+              <b>gsap, swiper를 사용하여 애니메이션</b>을 구현하였습니다.
+            </li>
+            <li class="swiper-slide">
+              HTML, CSS, jQuery를 활용하여 주식 담보 대출 서비스의<br>
+              <b>모바일 전용 페이지를 구현</b> 하였습니다.<br>
+              디자이너가 제공한 디자인을 반영하여 퍼블리싱 했으며,<br>
+              <b>메인 페이지의 애니메이션 구현에 중점을 두었습니다.</b>
+            </li>
+            <li class="swiper-slide">
+              HTML, CSS, 바닐라스크립트를 활용하여 은행 웹앱을 구현하였으며,<br>
+              <b>계좌 이용내역 더미 데이터를 불러와 직접 바인딩</b> 하였습니다.<br>
+              이를 활용해 <b>잔액 표시, 이용 내역, 사용 내역 그래프 등을 구현</b> 하였습니다.
+            </li>
+            <li class="swiper-slide">
+              HTML, CSS, jQuery를 활용하여 회사 홈페이지를 <b>반응형으로 퍼블리싱</b> 하였습니다.<br>
+              <b>jQuery, gsap, Slick 등의 라이브러리를 활용하여 다양한 UI 요소를 구현</b>했으며,<br>
+              카카오지도 html을 적용해 회사 위치를 표시 하였습니다.
+            </li>
+            <li class="swiper-slide">
+              <b>bonif 홈페이지 리뉴얼 프로젝트에 PL로 참여</b> 하였으며,<br>
+              퍼블리셔 3명과 함께 진행하였습니다.<br>
+              기획 단계에서 발생한 여러 이슈로 어려움이 있었지만,<br>
+              <b>PL로서의 역할과 원활한 협업의 중요성을 다시 한번 깨닫는 경험이 되었습니다.</b>
+            </li>
+            <li class="swiper-slide">
+              HTML, CSS, jQuery를 활용하여 <b>Audi 딜러 관리자 웹앱을 퍼블리싱</b> 하였습니다.<br>
+              아우디코리아의 요청사항과 디자인을 반영하여 제작하였으며,<br>
+              <b>사용자 편의성을 최우선으로 고려하여 작업</b> 하였습니다.
+            </li>
+            <li class="swiper-slide">
+              <b>React를 활용하여 뉴욕타임즈 API 기반의 뉴스 검색 사이트를 개발</b> 하였습니다.<br>
+              데이터를 <b>불러오고 가공하여 렌더링하는 과정에 집중</b> 하였으며,<br>
+              <b>로컬 스토리지를 활용해 최근 검색어 5개를 저장</b>하여<br>
+              새로고침 후에도 검색 기록이 유지되도록 구현하였습니다. <br>
+              또한, <b>무한 스크롤 기능을 적용하여 사용자 경험을 향상</b> 시켰습니다.
+            </li>
+          </ul>
         </div>
         <!-- Popup -->
         <!-- starbucks popup -->
@@ -268,7 +318,8 @@
             <h3>스타벅스 메인페이지 클론코딩</h3>
             <h4>메인페이지 구현(web)</h4>
             <div class="explain">
-              스타벅스 웹 메인 페이지를 클론 코딩하였습니다.<br>
+              <b>스타벅스 웹 메인 페이지를 클론 코딩</b>하였습니다.<br>
+              <b>기본적인 마크업과 기초적인 스크립트 구현에 중점을 두어 코딩</b> 하였습니다.<br>
               ScrollMagic과 gsap를 이용하여 애니메이션을 구현했습니다.<br>
               슬라이더는 Swiper를 이용해 구현했습니다.<br><br>
               ※ 참여도 - 퍼블리싱 100%
@@ -297,9 +348,9 @@
             <h3>키워드림론 모바일 퍼블리싱</h3>
             <h4>키워드림론 페이지 퍼블리싱(mobile)</h4>
             <div class="explain">
-              주식담보대출을 해주는 서비스 메인 페이지(mobile)을 구현였습니다.<br>
-              디자이너의 디자인을 받아 디자인대로 구현하였습니다.<br>
-              메인페이지 애니메이션에 집중했습니다.<br><br>
+              주식 담보 대출 서비스의 <b>모바일 전용 페이지를 구현</b>하였습니다.<br>
+              디자이너가 제공한 디자인을 반영하여 퍼블리싱 했으며,<br>
+              <b>메인 페이지의 애니메이션 구현에 중점을 두었습니다.</b><br><br>
               ※ 참여도 - 퍼블리싱 100%
             </div>
             <div class="cont tool">
@@ -330,8 +381,8 @@
             <h4>은행 웹앱 구현(mobile)</h4>
             <div class="explain">
               은행 웹앱을 구현하였습니다.<br>
-              계좌 이용내역 데이터를 불러와 직접 바인딩하여<br>
-              잔액, 이용내역, 사용내역 그래프등을 구현하였습니다.<br><br>
+              <b>계좌 이용내역 더미 데이터를 불러와 직접 바인딩</b>하였습니다.<br>
+              이를 활용해 <b>잔액, 이용내역, 사용내역 그래프등을 구현</b>하였습니다.<br><br>
               ※ 참여도 - 퍼블리싱 100%
             </div>
             <div class="cont tool">
@@ -358,9 +409,9 @@
             <h3>eMoney 회사 홈페이지 퍼블리싱</h3>
             <h4>회사 홈페이지 퍼블리싱(반응형)</h4>
             <div class="explain">
-              회사 홈페이지를 퍼블리싱하였습니다. 반응형으로 작업하였고,<br>
-              jQuery, spap.svg, slick등의 라이브러리를 사용하였고<br>
-              카카오지도 api를 활용하여 회사 위치를 표시했습니다.<br><br>
+              회사 홈페이지를 퍼블리싱하였습니다. <b>반응형으로 작업</b>하였고,<br>
+              <b>jQuery, spap.svg, slick등의 라이브러리를 활용하여 다양한 UI 요소를 구현</b>했으며,<br>
+              카카오지도 html을 적용해 회사 위치를 표시했습니다.<br><br>
               ※ 참여도 - 퍼블리싱 100%(혼자 진행)
             </div>
             <div class="cont tool">
@@ -379,31 +430,76 @@
             </div>
           </div>
         </div>
-        <!-- mbti -->
-        <div class="popup mbti_popup">
+        <!-- bonif -->
+        <div class="popup bonif_popup">
           <div class="popup_header">
             <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
           </div>
           <div class="popup_cont">
-            <h3>주식으로 보는 내 성향 테스트</h3>
-            <h4>MBTI 테스트(mobile)</h4>
+            <h3>bonif 홈페이지 리뉴얼</h3>
+            <h4>bonif 홈페이지 리뉴얼(web, mobile)</h4>
             <div class="explain">
-              제가 아이디어를 생각해 제안하여 기획해서 만든 페이지입니다.<br>
-              mbti 테스트를 기반으로 만들었습니다.<br>
-              금감원 정책이슈 때문에 홍보를 하지 못하였으나 사용자가 18,000명이 넘게 사용했습니다.<br><br>
-              ※ 참여도 - 퍼블리싱 100%(혼자 진행)
+              <b>bonif 홈페이지 리뉴얼 프로젝트에 PL로 참여</b> 하였으며,<br>
+              퍼블리셔 3명과 함께 진행하였습니다.<br>
+              기획 단계에서 발생한 여러 이슈로 어려움이 있었지만,<br>
+              <b>PL로서의 역할과 원활한 협업의 중요성을 다시 한번 깨닫는 경험이 되었습니다.</b><br><br>
+              ※ 참여도 - 퍼블리싱 40/100<br><br>
+              (web)<br>
+              - 메인 페이지<br>
+              - 브랜드 탭 페이지<br>
+              - 창업 탭 페이지<br>
+              - 고객센터 부분<br>
+              - 기타(회사소개, 로딩, 에러, 공사중, 약관)<br>
+              - 단체주문 부분<br><br>
+
+              (mobile)<br>
+              - 결제수단 관리 부분<br>
+              - 이벤트 관련 부분<br>
+              - 브랜드 부분<br>
+              - 고객센터 부분<br>
+              - ARS 부분<br>
+
+              
             </div>
             <div class="cont tool">
               <h5>tool</h5>
-              <em>jQuery</em>
+              <em>javaScript / swiper / gsap / jQuery / figma / photoshop</em>
             </div>
             <div class="cont link">
               <h5>link</h5>
-              <a href="//www.x1.co.kr/mbti" target="_blank">www.x1.co.kr/mbti</a>
+              <a href="https://www.bonif.co.kr/" target="_blank">https://www.bonif.co.kr/</a>
             </div>
             <div class="cont popMain">
               <h5>main</h5>
-              <img src="./common/img/mbti.jpg" alt="mbti">
+              <img src="./common/img/bon-pc.jpg" alt="bonif">
+              <img src="./common/img/bon-mo.jpg" alt="bonif">
+            </div>
+          </div>
+        </div>
+        <!-- audi -->
+        <div class="popup audi_popup">
+          <div class="popup_header">
+            <button class="close_btn"><img src="./common/img/close_icon.svg" alt="close"></button>
+          </div>
+          <div class="popup_cont">
+            <h3>Audi 딜러 관리 웹앱</h3>
+            <h4>Audi 딜러 관리 웹앱(mobile)</h4>
+            <div class="explain">
+              <b>Audi 딜러 관리자 웹앱을 퍼블리싱</b> 하였습니다.<br>
+              아우디코리아의 요청사항과 디자인을 반영하여 제작하였으며,<br>
+              <b>사용자 편의성을 최우선으로 고려하여 작업</b> 하였습니다.<br><br>
+            </div>
+            <div class="cont tool">
+              <h5>tool</h5>
+              <em>javaScript / swiper / gsap / jQuery / figma / photoshop</em>
+            </div>
+            <div class="cont link">
+              <h5>link</h5>
+              <a href="https://aws-code.d2.co.kr/2023/ADL_app/list/index.html" target="_blank">https://aws-code.d2.co.kr/2023/ADL_app/list/index.html</a>
+            </div>
+            <div class="cont popMain">
+              <h5>main</h5>
+              <img src="./common/img/audi-back.jpg" alt="audi">
             </div>
           </div>
         </div>
@@ -416,12 +512,13 @@
             <h3>뉴욕 타임즈 뉴스 검색 페이지</h3>
             <h4>뉴욕 타임즈 api를 활용한 뉴스 검색 페이지(web)</h4>
             <div class="explain">
-              리액트로 뉴욕타임즈 api를 활용하여 뉴스 검색 사이트를 만들었습니다.<br>
-              데이터를 불러오고 가공하여 뿌려주는것에 집중했습니다.<br>
-              로컬 스토리지에 최근 검색어 5개를 저장하여<br>
-              새로고침 하여도 검색했던 검색어를 계속 노출하였습니다.<br>
-              무한스크롤도 구현하였습니다.<br><br>
-              ※ 참여도 - 퍼블리싱 100%(혼자 진행)
+              <b>React를 활용하여 뉴욕타임즈 API 기반의 뉴스 검색 사이트를 개발</b> 하였습니다.<br>
+              데이터를 <b>불러오고 가공하여 렌더링하는 과정에 집중</b> 하였으며,<br>
+              <b>로컬 스토리지를 활용해 최근 검색어 5개를 저장</b>하여<br>
+              새로고침 후에도 검색 기록이 유지되도록 구현하였습니다. <br>
+              또한, <b>무한 스크롤 기능을 적용하여 사용자 경험을 향상</b> 시켰습니다.<br><br>
+              ※ 참여도 - 퍼블리싱 100%(혼자 진행)<br>
+              ※ 영어로만 검색가능!
               <div class="cont tool">
                 <h5>tool</h5>
                 <em>REACT / 뉴욕타임즈 API / 무한스크롤 / styled-components</em>

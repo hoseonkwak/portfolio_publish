@@ -4,10 +4,9 @@ onresize = (e) => {
   indexClickMove();
 };
 window.onload = () => {
-  document.querySelector(".loading_wrap").style.display = `none`;
+  // document.querySelector(".loading_wrap").style.display = `none`;
   document.querySelector(".load_comple").style.display = `block`;
   //alert("로드 완료");
-  workSlide(); // work 슬라이드
   document.addEventListener("mousemove", mouseMoveEffect); // 메인 마우스 움직일때
   changeImg(); // 메인화면 text 이미지 바꾸기
   indexHover(); // index배경 hover에 따라 바꾸기
@@ -22,10 +21,11 @@ window.onload = () => {
       //document.querySelector('.port_wrap').style.cssText =`--backgroundColor:#eee1d2;`;
     });
   }, 500);
-
+  
   popup(); //popup
   moveWrap(); // move scroll
   indexClickMove(); // index 클릭시 스크롤 이동
+  workSlide(); // work 슬라이드
 };
 
 /* ==================================== */
@@ -308,15 +308,41 @@ function indexHover(indexTop) {
 
 // work slide
 function workSlide() {
-  $(function () {
-    let carousel = $(".work_slide_wrap .flipster_cont").flipster({
-      style: "carousel",
-      spacing: -0.5,
-      loop: false,
-      buttons: true,
-      scrollwheel: true,
-    });
+  let carousel = $(".work_slide_wrap .flipster_cont").flipster({
+    style: "carousel",
+    spacing: -0.5,
+    loop: false,
+    buttons: true,
+    scrollwheel: false,
+    start: 4,
   });
+
+  let carousel2 = $(".work_wrap .flipster_info").flipster({
+    style: "flat",
+    spacing: -0.5,
+    loop: false,
+    // buttons: true,
+    scrollwheel: false,
+    start: 4,
+  });
+  
+  // "Prev" 또는 "Next" 버튼이 클릭될 때 두 개의 슬라이드가 함께 이동하도록 설정
+  $(".work_slide_wrap .flipster_cont").on("click", ".flipster__button--prev", function() {
+    carousel2.flipster('prev');
+  });
+
+  $(".work_slide_wrap .flipster_cont").on("click", ".flipster__button--next", function() {
+    carousel2.flipster('next');
+  });
+
+  $(".work_wrap .flipster_info").on("click", ".flipster__button--prev", function() {
+    carousel.flipster('prev');
+  });
+
+  $(".work_wrap .flipster_info").on("click", ".flipster__button--next", function() {
+    carousel.flipster('next');
+  });
+  
 }
 
 //popup
