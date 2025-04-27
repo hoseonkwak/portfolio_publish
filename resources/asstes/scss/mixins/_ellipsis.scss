@@ -1,0 +1,17 @@
+// $lines : 적용할 라인 수
+// $line-height : 줄 간격
+// $height : 기본 높이 값 적용이 필요할 경우 true
+
+@mixin text-ellipsis($lines: 1, $line-height: 1.5, $height: false) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-height: $line-height * 1em;
+  max-height: $line-height * $lines * 1em;
+
+  @if ( $height == true ) {
+    height: $line-height * $lines * 1em;
+  }
+}

@@ -1,0 +1,29 @@
+// 유틸리티에 필요한 맵 재할당
+// cf. 부트스트랩에서는 기본 색상 값의 형태를 rgba 로 사용하기 때문에 hex 형태로 선언된 색상 값들을 rgb 형태로 바꾼 뒤 맵에 재할당합니다.
+// cf. 재할당된 맵은 유틸리티를 생성할 때 사용됩니다.
+// cf. 페이지 내 사용된 각 함수에 대한 정보는 _functions.scss 파일을 참고해주세요.
+
+// 회색조 색상의 hex 값을 rgb 값으로 변경합니다.
+$grayscale-rgb: map-loop($grayscale, to-rgb, "$value") !default;
+
+// 테마 색상의 hex 값을 rgb 값으로 변경합니다.
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+
+// 모든 색상을 하나의 맵에 할당합니다.
+$utilities-colors: map-merge(
+    $grayscale-rgb,
+    $theme-colors-rgb
+) !default;
+
+// 유틸리티 색상 값을 CSS 변수와 rgba 로 재할당합니다.
+$utilities-var-colors: map-loop(
+    $utilities-colors,
+    rgba-css-var,
+    "$key",
+    "text"
+) !default;
+
+// spacer 음수 생성
+$negative-spacers: negativify-map($spacers) !default;
+
+

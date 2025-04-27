@@ -1,0 +1,24 @@
+// 미디어 쿼리
+//
+// mdq-min 은 @media (min-width: $value) {}
+// mdq-max 은 @media (max-width: $value) {}
+//
+// 예제)
+// * 매개변수 값은 _variables.scss 파일 내에 선언한 $grid-breakpoints 맵의 키값을 사용합니다.
+// @include mdq-min(sm) {
+//   .class {
+//     display: block;
+//   }
+// }
+
+@mixin mdq-min($key) {
+  @include media-breakpoint-up($key) {
+    @content;
+  }
+}
+
+@mixin mdq-max($key) {
+  @include media-breakpoint-down($key) {
+    @content;
+  }
+}

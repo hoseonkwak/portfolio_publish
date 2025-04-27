@@ -1,0 +1,28 @@
+// 모달 크기별 생성
+//
+// $modal-sizes 변수를 참조하여 모달 크기별 클래스를 생성합니다.
+// 예) pop-modal--sm, pop-modal--md, pop-modal--lg, ...
+
+@mixin generate-modal-size($sizes: $modal-sizes) {
+  @each $key, $value in $sizes {
+    @at-root {
+      .pop-modal.pop-modal--#{$key} {
+        .pop-wrap {
+          max-width: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-alert-size($sizes: $alert-sizes) {
+  @each $key, $value in $sizes {
+    @at-root {
+      .pop-alert.pop-alert--#{$key} {
+        .pop-wrap {
+          max-width: $value;
+        }
+      }
+    }
+  }
+}

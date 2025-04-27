@@ -1,0 +1,166 @@
+/* 전체 스크롤바를 얇게 변경 */
+::-webkit-scrollbar {
+  width: 0.3vw;  /* 세로 스크롤바 너비 */
+  height: 0.3vw; /* 가로 스크롤바 높이 */
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* 연한 회색 배경 */
+  border-radius: 0.5vw;
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3); /* 반투명 검은색 */
+  border-radius: 0.5vw;
+}
+
+/* 마우스로 스크롤바에 호버할 때 */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+html, body, .main {
+  width: 100%;
+  height: 100%;
+  font-family: 'S-CoreDream-3Light', sans-serif;
+  scroll-behavior: smooth; /* 부드러운 스크롤 */
+  -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 터치 스크롤 */
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: 'S-CoreDream-3Light', sans-serif;
+  overflow-x: hidden;
+  color: #000;
+}
+
+.mobile-br {
+  display: inline; // 모바일에서 줄바꿈 안 보이게
+
+  @media (min-width: 1025px) {
+    display: none; // pc에서 줄바꿈 보이게
+  }
+}
+
+.loading_wrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: block;
+  z-index: 9999;
+  background: #fff;
+
+  lottie-player{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: auto;
+  }
+}
+
+.load_comple{
+  display: none;
+}
+
+/* ========================================== header ========================================== */
+.header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  border-bottom: 2px solid #fff;
+  z-index: 99;
+  background: rgba(100, 100, 100, 0.4);
+  -webkit-transition: top 0.4s cubic-bezier(.165,.84,.44,1);
+  -o-transition: top 0.4s cubic-bezier(.165,.84,.44,1);
+  transition: top 0.4s cubic-bezier(.165,.84,.44,1);
+  -webkit-backdrop-filter: blur(3px) saturate(80%);
+  backdrop-filter: blur(3px) saturate(80%);
+
+  &.hide{
+    top: -110px;
+  }
+
+  .header_inner{
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+  }
+
+  .header_wrap{
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #fff;
+    text-transform: uppercase;
+
+    .logo_area{
+      font-family: 'SUIT-Regular';
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      height: 80%;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+
+      span{
+        &.logo_bottom{
+          display: block;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .nav{
+      font-family: 'Sulphur Point', sans-serif;
+      height: 80%;
+
+      ul{
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1;
+
+        li{
+          padding: 0 12px;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

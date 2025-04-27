@@ -1,0 +1,136 @@
+// Breakpoint 뷰포트 크기 및 미디어 쿼리 정의
+//
+// Breakpoints는 (이름: 최소 너비) 형태의 맵으로 정의됨, 작은 것부터 큰 것 순으로 정렬:
+//
+//    (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
+//
+// 전역 변수 `$grid-breakpoints`에 정의된 맵은 기본적으로 `$breakpoints` 인자로 사용됨.
+
+// 다음 breakpoint의 이름을 반환, 마지막 breakpoint인 경우 null 반환.
+//
+//    >> breakpoint-next(sm)
+//    md
+//    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px))
+//    md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl xxl))
+//    md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @if not $n {
+    @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+  }
+  // $n < length($breakpoint-names) 조건을 만족하면 다음 breakpoint 이름 반환, 아니면 null 반환
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// 최소 breakpoint 너비 반환. 가장 작은 (첫 번째) breakpoint인 경우 null 반환.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  // $min이 0이 아니면 $min 반환, 0이면 null 반환
+  @return if($min != 0, $min, null);
+}
+
+// 최대 breakpoint 너비 반환.
+// 최대값은 `min-`과 `max-` 접두사와 소수점 너비의 뷰포트 제한을 해결하기 위해 0.02px 감소시킴.
+// https://www.w3.org/TR/mediaqueries-4/#mq-min-max 참조
+// Safari에서의 반올림 버그를 해결하기 위해 0.01px 대신 0.02px 사용.
+// https://bugs.webkit.org/show_bug.cgi?id=178261 참조
+//
+//    >> breakpoint-max(md, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px))
+//    767.98px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map-get($breakpoints, $name);
+  // $max가 존재하고 0보다 크면, $max에서 0.02 뺀 값을 반환, 아니면 null 반환
+  @return if($max and $max > 0, $max - .02, null);
+}
+
+// 가장 작은 breakpoint인 경우 빈 문자열을 반환하고, 그렇지 않으면 이름 앞에 대시를 붙여 반환.
+// 반응형 유틸리티를 만드는 데 유용함.
+//
+//    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px))
+//    ""  (빈 문자열 반환)
+//    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px))
+//    "-sm"
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  // 최소 breakpoint 너비가 null이면 빈 문자열 반환, 아니면 이름 앞에 대시를 붙여 반환
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+// 최소 breakpoint 너비 이상인 경우에만 미디어 쿼리 적용.
+// 가장 작은 breakpoint에는 쿼리를 적용하지 않음.
+// 주어진 breakpoint와 더 넓은 뷰포트에 @content 적용.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  // $min이 존재하면 해당 최소 너비에 대한 미디어 쿼리 적용, 아니면 @content만 적용
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 최대 breakpoint 너비 이하인 경우에만 미디어 쿼리 적용.
+// 가장 큰 breakpoint에는 쿼리를 적용하지 않음.
+// 주어진 breakpoint와 더 좁은 뷰포트에 @content 적용.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  // $max가 존재하면 해당 최대 너비에 대한 미디어 쿼리 적용, 아니면 @content만 적용
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 여러 breakpoint 너비를 아우르는 미디어 쿼리.
+// 주어진 min과 max breakpoint 사이에 @content 적용.
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+  
+  // $min과 $max가 모두 존재하면 해당 범위에 대한 미디어 쿼리 적용
+  // $max가 null이면 media-breakpoint-up 믹스인 사용
+  // $min이 null이면 media-breakpoint-down 믹스인 사용
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// 특정 breakpoint의 최소 및 최대 너비 사이에만 적용되는 미디어 쿼리.
+// 가장 작은 breakpoint에는 최소값이 없고, 가장 큰 breakpoint에는 최대값이 없음.
+// @content를 해당 breakpoint에만 적용하고, 더 넓거나 좁은 뷰포트에는 적용하지 않음.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $next: breakpoint-next($name, $breakpoints);
+  $max: breakpoint-max($next, $breakpoints);
+  
+  // $min과 $max가 모두 존재하면 해당 범위에 대한 미디어 쿼리 적용
+  // $max가 null이면 media-breakpoint-up 믹스인 사용
+  // $min이 null이면 media-breakpoint-down 믹스인 사용
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  }
+}

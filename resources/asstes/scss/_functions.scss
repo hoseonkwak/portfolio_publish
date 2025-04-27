@@ -1,0 +1,416 @@
+@use "sass:math";
+
+// Bootstrap functions
+//
+// 유틸리티 믹스인과 함수들의 모음입니다. 이들은 SCSS에서 변수, 맵, 믹스인의 평가에 사용됩니다.
+
+// Sass 맵이 오름차순으로 정렬되었는지 확인합니다.
+@mixin _assert-ascending($map, $map-name) {
+  $prev-key: null; // 이전 키를 저장합니다.
+  $prev-num: null; // 이전 숫자 값을 저장합니다.
+  @each $key, $num in $map {
+    @if $prev-num == null or unit($num) == "%" or unit($prev-num) == "%" {
+      // 첫 번째 요소이거나 단위가 %인 경우, 아무것도 하지 않습니다.
+    } @else if not comparable($prev-num, $num) {
+      // 이전 값과 현재 값이 비교 불가능한 경우, 경고 메시지를 출력합니다.
+      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    } @else if $prev-num >= $num {
+      // 현재 값이 이전 값보다 작거나 같은 경우, 유효하지 않은 값으로 간주하고 경고 메시지를 출력합니다.
+      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    }
+    $prev-key: $key; // 이전 키를 현재 키로 업데이트합니다.
+    $prev-num: $num; // 이전 숫자 값을 현재 값으로 업데이트합니다.
+  }
+}
+
+// 맵의 첫 번째 값이 0에서 시작하는지 확인합니다.
+@mixin _assert-starts-at-zero($map, $map-name: "$grid-breakpoints") {
+  @if length($map) > 0 {
+    $values: map-values($map); // 맵의 값들을 추출합니다.
+    $first-value: nth($values, 1); // 첫 번째 값을 가져옵니다.
+    @if $first-value != 0 {
+      // 첫 번째 값이 0이 아닌 경우, 경고 메시지를 출력합니다.
+      @warn "First breakpoint in #{$map-name} must start at 0, but starts at #{$first-value}.";
+    }
+  }
+}
+
+// 색상 값을 RGB 형태로 변환합니다.
+@function to-rgb($value) {
+  @return red($value), green($value), blue($value); // red(), green(), blue() 함수를 이용하여 RGB 값을 추출합니다.
+}
+
+// CSS 변수를 사용하여 RGBA 색상 값을 생성합니다.
+@function rgba-css-var($identifier, $target) {
+  // identifier와 target에 따라 다른 CSS 변수를 사용합니다.
+  @if $identifier == "body" and $target == "bg" {
+    @return rgba(
+        var(--#{$prefix}#{$identifier}-bg-rgb),
+        var(--#{$prefix}#{$target}-opacity)
+    );
+  }
+  @if $identifier == "body" and $target == "text" {
+    @return rgba(
+        var(--#{$prefix}#{$identifier}-color-rgb),
+        var(--#{$prefix}#{$target}-opacity)
+    );
+  } @else {
+    @return rgba(
+        var(--#{$prefix}#{$identifier}-rgb),
+        var(--#{$prefix}#{$target}-opacity)
+    );
+  }
+}
+
+// 맵의 각 항목에 대해 지정된 함수를 적용합니다.
+@function map-loop($map, $func, $args...) {
+  $_map: (); // 새 맵을 초기화합니다.
+  
+  @each $key, $value in $map {
+    $_args: (); // 함수에 전달할 인자들을 초기화합니다.
+    @each $arg in $args {
+      // $arg가 $key 또는 $value일 경우, 해당 값을 전달합니다.
+      $_args: append(
+          $_args,
+          if($arg == "$key", $key, if($arg == "$value", $value, $arg))
+      );
+    }
+    
+    // 지정된 함수를 호출하여 새 값을 생성하고 맵에 추가합니다.
+    $_map: map-merge(
+        $_map,
+        (
+          $key: call(get-function($func), $_args...),
+        )
+    );
+  }
+  
+  @return $_map; // 결과 맵을 반환합니다.
+}
+
+// 맵을 부정적인 변형으로 변환합니다.
+// 키 앞에 `n`을 붙이고 값을 음수로 만듭니다.
+@function negativify-map($map) {
+  $result: (); // 결과 맵을 초기화합니다.
+  @each $key, $value in $map {
+    @if $key != 0 {
+      // 키가 0이 아닌 경우, 키 앞에 'n'을 붙이고 값은 음수로 만들어 결과 맵에 병합합니다.
+      $result: map-merge($result, ("n" + $key: (-$value)));
+    }
+  }
+  @return $result; // 변경된 맵을 반환합니다.
+}
+
+
+// 문자열에서 `$search`를 `$replace`로 대체합니다.
+// SVG 아이콘 배경 등에서 사용됩니다.
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search); // 문자열에서 검색 문자열의 위치를 찾습니다.
+  
+  @if $index {
+    // 검색 문자열이 존재하면 해당 부분을 대체 문자열로 교체합니다.
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+  
+  @return $string; // 변경되지 않은 원래 문자열을 반환합니다.
+}
+
+
+// SVG 데이터 URI를 이스케이프 처리합니다.
+// 데이터 URI 주변에 따옴표 사용이 필요합니다.
+// 참조 URL : https://codepen.io/kevinweber/pen/dXWoRw
+@function escape-svg($string) {
+  @if str-index($string, "data:image/svg+xml") {
+    @each $char, $encoded in $escaped-characters {
+      // URL 괄호 내부는 이스케이프 처리하지 않습니다.
+      @if str-index($string, "url(") == 1 {
+        $string: url("#{str-replace(str-slice($string, 6, -3), $char, $encoded)}");
+      } @else {
+        $string: str-replace($string, $char, $encoded);
+      }
+    }
+  }
+  
+  @return $string; // 이스케이프 처리된 문자열을 반환합니다.
+}
+
+// Color contrast
+//
+// 배경색에 대한 적절한 대조 색상을 계산합니다.
+// 참조 : https://github.com/twbs/bootstrap/pull/30168
+$_luminance-list: 0.0008 0.001 0.0011 0.0013 0.0015 0.0017 0.002 0.0022 0.0025
+0.0027 0.003 0.0033 0.0037 0.004 0.0044 0.0048 0.0052 0.0056 0.006 0.0065
+0.007 0.0075 0.008 0.0086 0.0091 0.0097 0.0103 0.011 0.0116 0.0123 0.013
+0.0137 0.0144 0.0152 0.016 0.0168 0.0176 0.0185 0.0194 0.0203 0.0212 0.0222
+0.0232 0.0242 0.0252 0.0262 0.0273 0.0284 0.0296 0.0307 0.0319 0.0331 0.0343
+0.0356 0.0369 0.0382 0.0395 0.0409 0.0423 0.0437 0.0452 0.0467 0.0482 0.0497
+0.0513 0.0529 0.0545 0.0561 0.0578 0.0595 0.0612 0.063 0.0648 0.0666 0.0685
+0.0704 0.0723 0.0742 0.0762 0.0782 0.0802 0.0823 0.0844 0.0865 0.0887 0.0908
+0.0931 0.0953 0.0976 0.0999 0.1022 0.1046 0.107 0.1095 0.1119 0.1144 0.117
+0.1195 0.1221 0.1248 0.1274 0.1301 0.1329 0.1356 0.1384 0.1413 0.1441 0.147
+0.15 0.1529 0.1559 0.159 0.162 0.1651 0.1683 0.1714 0.1746 0.1779 0.1812
+0.1845 0.1878 0.1912 0.1946 0.1981 0.2016 0.2051 0.2086 0.2122 0.2159 0.2195
+0.2232 0.227 0.2307 0.2346 0.2384 0.2423 0.2462 0.2502 0.2542 0.2582 0.2623
+0.2664 0.2705 0.2747 0.2789 0.2831 0.2874 0.2918 0.2961 0.3005 0.305 0.3095
+0.314 0.3185 0.3231 0.3278 0.3325 0.3372 0.3419 0.3467 0.3515 0.3564 0.3613
+0.3663 0.3712 0.3763 0.3813 0.3864 0.3916 0.3968 0.402 0.4072 0.4125 0.4179
+0.4233 0.4287 0.4342 0.4397 0.4452 0.4508 0.4564 0.4621 0.4678 0.4735 0.4793
+0.4851 0.491 0.4969 0.5029 0.5089 0.5149 0.521 0.5271 0.5333 0.5395 0.5457
+0.552 0.5583 0.5647 0.5711 0.5776 0.5841 0.5906 0.5972 0.6038 0.6105 0.6172
+0.624 0.6308 0.6376 0.6445 0.6514 0.6584 0.6654 0.6724 0.6795 0.6867 0.6939
+0.7011 0.7084 0.7157 0.7231 0.7305 0.7379 0.7454 0.7529 0.7605 0.7682 0.7758
+0.7835 0.7913 0.7991 0.807 0.8148 0.8228 0.8308 0.8388 0.8469 0.855 0.8632
+0.8714 0.8796 0.8879 0.8963 0.9047 0.9131 0.9216 0.9301 0.9387 0.9473 0.956
+0.9647 0.9734 0.9823 0.9911 1;
+
+@function color-contrast(
+  $background,
+  $color-contrast-dark: $color-contrast-dark,
+  $color-contrast-light: $color-contrast-light,
+  $min-contrast-ratio: $min-contrast-ratio
+) {
+  $foregrounds: $color-contrast-light, $color-contrast-dark, $white, $black;
+  $max-ratio: 0;
+  $max-ratio-color: null;
+  
+  @each $color in $foregrounds {
+    $contrast-ratio: contrast-ratio($background, $color);
+    @if $contrast-ratio > $min-contrast-ratio {
+      // 최소 대비 비율보다 높은 대비를 가진 색상을 반환합니다.
+      @return $color;
+    } @else if $contrast-ratio > $max-ratio {
+      // 최대 대비 비율을 갱신합니다.
+      $max-ratio: $contrast-ratio;
+      $max-ratio-color: $color;
+    }
+  }
+  
+  @warn "Found no color leading to #{$min-contrast-ratio}:1 contrast ratio against #{$background}...";
+  
+  @return $max-ratio-color; // 최대 대비 비율을 가진 색상을 반환합니다.
+}
+
+// 두 색상 간의 대비 비율을 계산합니다.
+@function contrast-ratio($background, $foreground: $color-contrast-light) {
+  $l1: luminance($background); // 배경색의 명도를 계산합니다.
+  $l2: luminance(opaque($background, $foreground)); // 전경색의 명도를 계산합니다.
+  
+  @return if(
+      $l1 > $l2,
+      divide($l1 + 0.05, $l2 + 0.05),
+      divide($l2 + 0.05, $l1 + 0.05)
+  );
+}
+
+// Luminance
+//
+// WCAG2.1 상대 명도를 반환합니다.
+// 참조 : https://www.w3.org/TR/WCAG/#dfn-relative-luminance
+// 참조 : https://www.w3.org/TR/WCAG/#dfn-contrast-ratio
+@function luminance($color) {
+  $rgb: (
+    "r": red($color),
+    "g": green($color),
+    "b": blue($color),
+  );
+  
+  @each $name, $value in $rgb {
+    $value: if(
+        divide($value, 255) < 0.04045,
+        divide(divide($value, 255), 12.92),
+        nth($_luminance-list, $value + 1)
+    );
+    $rgb: map-merge(
+        $rgb,
+        (
+          $name: $value,
+        )
+    );
+  }
+  
+  @return (map-get($rgb, "r") * 0.2126) + (map-get($rgb, "g") * 0.7152) +
+    (map-get($rgb, "b") * 0.0722); // RGB 값에 가중치를 적용하여 명도를 계산합니다.
+}
+
+// Opaque
+//
+// 불투명한 색상을 반환합니다.
+// opaque(#fff, rgba(0, 0, 0, .5)) => #808080
+@function opaque($background, $foreground) {
+  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100%);
+}
+
+// 두 값의 합을 계산하거나, 두 값이 비교 불가능할 경우 calc()를 사용합니다.
+@function add($value1, $value2, $return-calc: true) {
+  @if $value1 == null {
+    @return $value2;
+  }
+  
+  @if $value2 == null {
+    @return $value1;
+  }
+  
+  @if type-of($value1) ==
+    number and
+    type-of($value2) ==
+    number and
+    comparable($value1, $value2)
+  {
+    @return $value1 + $value2;
+  }
+  
+  @return if(
+      $return-calc == true,
+      calc(#{$value1} + #{$value2}),
+      $value1 + unquote(" + ") + $value2
+  );
+}
+
+// Subtract
+//
+// 두 값의 차를 계산하거나, 두 값이 비교 불가능할 경우 calc()를 사용합니다.
+@function subtract($value1, $value2, $return-calc: true) {
+  @if $value1 == null and $value2 == null {
+    @return null;
+  }
+  
+  @if $value1 == null {
+    @return -$value2;
+  }
+  
+  @if $value2 == null {
+    @return $value1;
+  }
+  
+  @if type-of($value1) ==
+    number and
+    type-of($value2) ==
+    number and
+    comparable($value1, $value2)
+  {
+    @return $value1 - $value2;
+  }
+  
+  @if type-of($value2) != number {
+    $value2: unquote("(") + $value2 + unquote(")");
+  }
+  
+  @return if(
+      $return-calc == true,
+      calc(#{$value1} - #{$value2}),
+      $value1 + unquote(" - ") + $value2
+  );
+}
+
+
+// Divide
+//
+// 두 숫자를 정확하게 나눕니다.
+// 정밀도를 위해 내부적으로 반복 연산을 사용합니다.
+@function divide($dividend, $divisor, $precision: 10) {
+  // $sign은 결과값의 부호를 결정합니다. 나누는 수와 나누어지는 수가 같은 부호일 경우 양수, 아닐 경우 음수가 됩니다.
+  $sign: if(
+      $dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0,
+      1,
+      -1
+  );
+  
+  // $dividend와 $divisor의 절댓값을 구합니다.
+  $dividend: abs($dividend);
+  $divisor: abs($divisor);
+  
+  // 나누어지는 수가 0이면 결과는 0입니다.
+  @if $dividend == 0 {
+    @return 0;
+  }
+  
+  // 0으로 나눌 수 없으므로 오류를 발생시킵니다.
+  @if $divisor == 0 {
+    @error "Cannot divide by 0";
+  }
+  
+  // $remainder와 $result를 초기화합니다.
+  $remainder: $dividend;
+  $result: 0;
+  
+  // $factor는 소수점 처리를 위한 변수입니다.
+  $factor: 10;
+  
+  // $precision이 0보다 크고 $remainder가 0보다 크면 반복합니다.
+  @while ($remainder > 0 and $precision >= 0) {
+    $quotient: 0;
+    
+    // $remainder가 $divisor보다 크거나 같으면 $quotient를 증가시키고 $remainder에서 $divisor를 뺍니다.
+    @while ($remainder >= $divisor) {
+      $remainder: $remainder - $divisor;
+      $quotient: $quotient + 1;
+    }
+    
+    // 계산된 값을 $result에 추가합니다.
+    $result: $result * 10 + $quotient;
+    $factor: $factor * 0.1;
+    $remainder: $remainder * 10;
+    $precision: $precision - 1;
+    
+    // 마지막 반올림을 처리합니다.
+    @if ($precision < 0 and $remainder >= $divisor * 5) {
+      $result: $result + 1;
+    }
+  }
+  
+  // 최종 결과에 부호와 $factor를 적용합니다.
+  $result: $result * $factor * $sign;
+  
+  // 단위 처리 부분입니다. 나누어지는 수와 나누는 수의 단위가 다를 경우 처리합니다.
+  $dividend-unit: unit($dividend);
+  $divisor-unit: unit($divisor);
+  $unit-map: (
+    "px": 1px,
+    "rem": 1rem,
+    "em": 1em,
+    "%": 1%,
+  );
+  
+  // 단위 변환을 수행합니다.
+  @if (
+    $dividend-unit != $divisor-unit and map-has-key($unit-map, $dividend-unit)
+  ) {
+    $result: $result * map-get($unit-map, $dividend-unit);
+  }
+  
+  // 최종 결과를 반환합니다
+  @return $result;
+}
+
+// 단위 변환 함수 vw
+@function vw($value, $standard: 1920, $minmax: min){
+  $std: $standard;
+  
+  @if ( map-get($grid-breakpoints, $standard) != null ) {
+    $std: map-get($grid-breakpoints, $standard);
+    $std: math.div($std, ($std * 0 + 1));
+  }
+  
+  @if ( $minmax == min ) {
+    @return min(calc($value/calc($std/100))*1vw, rem($value));
+  } @else if ( $minmax == max ) {
+    @return max(calc($value/calc($std/100))*1vw, rem($value));
+  } @else {
+    @return calc($value/calc($std/100))*1vw;
+  }
+}
+
+// 단위 변환 함수 rem
+@function rem($value, $standard: 16){
+  @return math.div($value, $standard)*1rem;
+}
+
+// 단위 변환 함수 em
+@function em($value, $standard: 16){
+  @return math.div($value, $standard)*1em;
+}

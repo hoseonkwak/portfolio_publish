@@ -1,0 +1,62 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+li{
+  list-style: none;
+  outline: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+body, button, input, select, table, textarea{
+  font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+body{
+  &.popon{
+    overflow: hidden;
+  }
+}
+
+img{
+  &:focus{
+    outline: none;
+  }
+}
+
+button{
+  border: none;
+  outline: none;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+button{
+  border: none;
+  outline: none;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+input{
+  &:focus{
+    outline:none;
+  }
+}
+div{
+  &:focus{
+    outline:none;
+  }
+}
